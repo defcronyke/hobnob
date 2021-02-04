@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../hob"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../libhob"
+		},
+		{
+			"path": "../libnob"
+		},
+		{
+			"path": "../nob"
+		}
+	]
+}
