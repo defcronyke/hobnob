@@ -6,7 +6,7 @@ Details will be added later.
   
 To clone the project:  
 ```shell
-git clone --recurse-submodules
+git clone --recurse-submodules https://gitlab.com/defcronyke/hobnob.git
 ```  
   
 To update the project:  
