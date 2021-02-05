@@ -16,5 +16,5 @@
 # this project's license terms taking first priority.
 
 git submodule foreach git $@ || true
-git $@
+git $@ || true
 
