@@ -25,3 +25,15 @@
 [submodule "nob"]
 	path = nob
 	url = https://gitlab.com/defcronyke/nob.git
+[submodule "libhov"]
+	path = libhov
+	url = https://gitlab.com/defcronyke/libhov.git
+[submodule "hov"]
+	path = hov
+	url = https://gitlab.com/defcronyke/hov.git
+[submodule "libnov"]
+	path = libnov
+	url = https://gitlab.com/defcronyke/libnov.git
+[submodule "nov"]
+	path = nov
+	url = https://gitlab.com/defcronyke/nov.git

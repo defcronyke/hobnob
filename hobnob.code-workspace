@@ -11,6 +11,18 @@
     },
     {
       "path": "nob"
+    },
+    {
+      "path": "hov"
+    },
+    {
+      "path": "libhov"
+    },
+    {
+      "path": "libnov"
+    },
+    {
+      "path": "nov"
     }
   ]
 }
