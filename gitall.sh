@@ -15,6 +15,6 @@
 # terms from all of the different technologies apply, with
 # this project's license terms taking first priority.
 
-git submodule foreach git $@
+git submodule foreach git $@ || true
 git $@
 
