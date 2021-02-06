@@ -17,12 +17,22 @@
 
 # Runs this test program to check if gfx-hal is working:
 #
-#   libnov/cmd/load-image
+#   ../libnov/cmd/load-image
+#
+# It defaults to the vulkan backend, but you can change it
+# to any one of these others instead if you prefer and it's
+# supported by your OS:
+#
+#   gl, dx12, dx11, metal, empty
+#
+# This is how you change it to OpenGL for example:
+#
+#   ./load-image.sh --features gl
 #
 
 pwd="$PWD"
 cd nov
 
-./load-image.sh $@
+./load-image-metal.sh $@
 
 cd "$pwd"

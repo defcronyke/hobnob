@@ -15,14 +15,9 @@
 # terms from all of the different technologies apply, with
 # this project's license terms taking first priority.
 
-# Runs this test program to check if gfx-hal is working:
-#
-#   libnov/cmd/load-image
-#
-
 pwd="$PWD"
 cd nov
 
-./load-image.sh $@
+./run-metal.sh $@
 
 cd "$pwd"
