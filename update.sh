@@ -15,9 +15,4 @@
 # terms from all of the different technologies apply, with
 # this project's license terms taking first priority.
 
-pwd="$PWD"
-cd nov
-
-./run-metal.sh $@
-
-cd "$pwd"
+git pull && git submodule update --init --recursive && git submodule foreach git checkout master
