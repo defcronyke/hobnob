@@ -1,5 +1,5 @@
-# hobnob - Hobnob Open Base and Open View  
-  
+# Hobnob Open Base and Open View  
+================================  
 https://gitlab.com/defcronyke/hobnob  
   
 Copyright (c) 2021 Jeremy Carter <jeremy@jeremycarter.ca>  
@@ -15,24 +15,24 @@ Hob and Hov are Go language projects.
   
 Together these systems are known as Hobnob.  
   
-* This project is under active development, with no 
+This project is under active development, with no 
 release date scheduled yet. Check back here regularly
 if you'd like to follow the progress.  
   
 To clone the project:  
----------------------  
+=====================  
 ```shell
 git clone --recurse-submodules https://gitlab.com/defcronyke/hobnob.git
 ```  
   
 To update the project:  
-----------------------  
+======================  
 ```shell
 git pull && git submodule update --init --recursive
 ```  
   
 To install the project build dependencies:  
-------------------------------------------  
+==========================================  
 1. Nob and Nov: Install the Rust programming 
 language toolchain: 
 https://rustup.rs  
@@ -50,9 +50,10 @@ language toolchain:
 https://golang.org/dl/  
   
 Build and run the project:  
---------------------------  
-Nob and Nov - Linux  
--------------------  
+==========================  
+Nob and Nov  
+-----------  
+* Linux  
 ```shell
 # Install and run the Vulkan version.
 ./run.sh
@@ -67,8 +68,7 @@ Nob and Nov - Linux
 ./load-image-gl.sh
 ```  
   
-Nob and Nov - Windows  
----------------------  
+* Windows  
 ```powershell
 # Install and run the Vulkan version.
 .\run.bat
@@ -89,8 +89,7 @@ Nob and Nov - Windows
 .\load-image-dx11.bat
 ```  
   
-Nob and Nov - macOS  
--------------------  
+* macOS  
 ```shell
 # Install and run the Metal version.
 ./run-metal.sh
@@ -99,5 +98,6 @@ Nob and Nov - macOS
 ./load-image-metal.sh
 ```  
   
-Hob and Hov - Work in progress. Check back later...  
----------------------------------------------------  
+Hob and Hov  
+-----------  
+Work in progress. Check back later...  
