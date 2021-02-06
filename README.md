@@ -27,8 +27,28 @@ git clone --recurse-submodules https://gitlab.com/defcronyke/hobnob.git
   
 To update the project:  
 ======================  
+* Linux and macOS  
 ```shell
-git pull && git submodule update --init --recursive && git submodule foreach git checkout master
+# Run the included script:
+./update.sh
+
+# (Optional) Or run these git commands:
+git pull && \
+git submodule update --init --recursive && \
+git submodule foreach git checkout master && \
+git submodule foreach git pull
+```  
+  
+* Windows  
+```powershell
+# Run the included script:
+.\update.bat
+
+# (Optional) Or run these git commands:
+git pull
+git submodule update --init --recursive
+git submodule foreach git checkout master
+git submodule foreach git pull
 ```  
   
 To install the project build dependencies:  
