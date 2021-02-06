@@ -47,7 +47,7 @@ cd libnov
   
 3. (Optional) Hob and Hov: Install the Go programming 
 language toolchain: 
-https://golang.org/dl/  
+https://golang.org/dl  
   
 Build and run the project:  
 ==========================  
