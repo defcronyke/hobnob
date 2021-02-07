@@ -20,6 +20,32 @@ This project is under active development, with no
 release date scheduled yet. Check back here regularly
 if you'd like to follow the progress.  
   
+To update the project if you cloned it already:  
+===============================================  
+* Linux and macOS  
+```shell
+# Run the included script:
+./update.sh
+
+# (Optional) Or run these git commands:
+git pull && \
+git submodule update --init --recursive && \
+git submodule foreach git checkout master && \
+git submodule foreach git pull
+```  
+  
+* Windows  
+```powershell
+# Run the included script:
+.\update.bat
+
+# (Optional) Or run these git commands:
+git pull
+git submodule update --init --recursive
+git submodule foreach git checkout master
+git submodule foreach git pull
+```  
+  
 To clone the project:  
 =====================  
 ```shell
@@ -94,29 +120,3 @@ Nob and Nov
 Hob and Hov  
 -----------  
 Work in progress. Check back later...  
-  
-To update the project:  
-======================  
-* Linux and macOS  
-```shell
-# Run the included script:
-./update.sh
-
-# (Optional) Or run these git commands:
-git pull && \
-git submodule update --init --recursive && \
-git submodule foreach git checkout master && \
-git submodule foreach git pull
-```  
-  
-* Windows  
-```powershell
-# Run the included script:
-.\update.bat
-
-# (Optional) Or run these git commands:
-git pull
-git submodule update --init --recursive
-git submodule foreach git checkout master
-git submodule foreach git pull
-```  
