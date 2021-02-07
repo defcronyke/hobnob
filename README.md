@@ -10,19 +10,14 @@ A set of Open Base and Open View systems for software
 projects on Linux, Windows, or macOS.  
   
 Nob (Open Base) and Nov (Open View) are Rust language 
-projects.  
-  
-Hob and Hov are Go language projects.  
-  
-Together these systems are known as Hobnob.  
+systems. Hob and Hov are Go language systems. Together 
+these are known as Hobnob.  
   
 The following video technologies are currently supported:  
-  
-Linux: Vulkan and OpenGL  
-  
-Windows: Vulkan, DirectX 12, and DirectX 11  
-  
-macOS: Metal  
+---------------------------------------------------------  
+* Linux: Vulkan and OpenGL  
+* Windows: Vulkan, DirectX 12, and DirectX 11  
+* macOS: Metal  
   
 This project is under active development, with no 
 release date scheduled yet. Check back here regularly
