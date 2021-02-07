@@ -7,7 +7,7 @@ Copyright (c) 2021 Jeremy Carter <jeremy@jeremycarter.ca>
 Released under the terms of the MIT License.  
   
 A set of Open Base and Open View systems for software 
-projects on Linux, Windows, or macOS.  
+projects on Linux, Windows, and macOS.  
   
 Nob (Open Base) and Nov (Open View) are Rust language 
 systems. Hob and Hov are Go language systems. Together 
