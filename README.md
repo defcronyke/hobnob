@@ -15,9 +15,13 @@ these are known as Hobnob.
   
 The following video technologies are currently supported:  
 ---------------------------------------------------------  
+*Nob and Nov*  
 * Linux: Vulkan and OpenGL  
 * Windows: Vulkan, DirectX 12, and DirectX 11  
 * macOS: Metal  
+  
+*Hob and Hov*  
+* Work in progress  
   
 This project is under active development, with no 
 release date scheduled yet. Check back here regularly
