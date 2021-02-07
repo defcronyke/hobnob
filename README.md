@@ -54,17 +54,17 @@ git clone --recurse-submodules https://gitlab.com/defcronyke/hobnob.git && cd ho
   
 To install the project build dependencies:  
 ==========================================  
-1. Nob and Nov: Install the Rust programming 
-language toolchain: 
+1. For Nob and Nov: Install the Rust programming language 
+toolchain: 
 https://rustup.rs  
   
 2. (Linux and macOS Only) Install some OS-specific 
-dependencies:  
+dependencies (cmake and some others):  
 ```shell
 ./install-deps.sh
 ```  
   
-3. (Optional) Hob and Hov: Install the Go programming 
+3. (Optional) For Hob and Hov: Install the Go programming 
 language toolchain: 
 https://golang.org/dl  
   
