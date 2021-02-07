@@ -16,6 +16,14 @@ Hob and Hov are Go language projects.
   
 Together these systems are known as Hobnob.  
   
+The following video technologies are currently supported:  
+  
+Linux: Vulkan and OpenGL  
+  
+Windows: Vulkan, DirectX 12, and DirectX 11  
+  
+macOS: Metal  
+  
 This project is under active development, with no 
 release date scheduled yet. Check back here regularly
 if you'd like to follow the progress.  
@@ -56,19 +64,19 @@ dependencies (cmake and some others):
 language toolchain: 
 https://golang.org/dl  
   
-Build and run the project:  
-==========================  
+To build and run the project:  
+=============================  
 Nob and Nov  
 -----------  
 * Linux  
 ```shell
-# Install and run the Vulkan version.
+# Compile and run the Vulkan version.
 ./run.sh
 
 # (Optional) Check if the Vulkan version is working.
 ./load-image.sh
 
-# (Optional) Install and run the OpenGL version.
+# (Optional) Compile and run the OpenGL version.
 ./run-gl.sh
 
 # (Optional) Check if the OpenGL version is working.
@@ -77,19 +85,19 @@ Nob and Nov
   
 * Windows  
 ```powershell
-# Install and run the Vulkan version.
+# Compile and run the Vulkan version.
 .\run.bat
 
 # (Optional) Check if the Vulkan version is working.
 .\load-image.bat
 
-# (Optional) Install and run the DirectX 12 version.
+# (Optional) Compile and run the DirectX 12 version.
 .\run-dx12.bat
 
 # (Optional) Check if the DirectX 12 version is working.
 .\load-image-dx12.bat
 
-# (Optional) Install and run the DirectX 11 version.
+# (Optional) Compile and run the DirectX 11 version.
 .\run-dx11.bat
 
 # (Optional) Check if the DirectX 11 version is working.
@@ -98,7 +106,7 @@ Nob and Nov
   
 * macOS  
 ```shell
-# Install and run the Metal version.
+# Compile and run the Metal version.
 ./run-metal.sh
 
 # (Optional) Check if the Metal version is working.
