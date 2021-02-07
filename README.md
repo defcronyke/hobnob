@@ -7,7 +7,7 @@ Copyright (c) 2021 Jeremy Carter <jeremy@jeremycarter.ca>
 Released under the terms of the MIT License.  
   
 A set of Open Base and Open View systems for software 
-projects.  
+projects on Linux, Windows, or macOS.  
   
 Nob (Open Base) and Nov (Open View) are Rust language 
 projects.  
@@ -26,24 +26,12 @@ To update the project if you cloned it already:
 ```shell
 # Run the included script:
 ./update.sh
-
-# (Optional) Or run these git commands:
-git pull && \
-git submodule update --init --recursive && \
-git submodule foreach git checkout master && \
-git submodule foreach git pull
 ```  
   
 * Windows  
 ```powershell
 # Run the included script:
 .\update.bat
-
-# (Optional) Or run these git commands:
-git pull
-git submodule update --init --recursive
-git submodule foreach git checkout master
-git submodule foreach git pull
 ```  
   
 To clone the project:  
