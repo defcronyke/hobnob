@@ -23,33 +23,7 @@ if you'd like to follow the progress.
 To clone the project:  
 =====================  
 ```shell
-git clone --recurse-submodules https://gitlab.com/defcronyke/hobnob.git
-```  
-  
-To update the project:  
-======================  
-* Linux and macOS  
-```shell
-# Run the included script:
-./update.sh
-
-# (Optional) Or run these git commands:
-git pull && \
-git submodule update --init --recursive && \
-git submodule foreach git checkout master && \
-git submodule foreach git pull
-```  
-  
-* Windows  
-```powershell
-# Run the included script:
-.\update.bat
-
-# (Optional) Or run these git commands:
-git pull
-git submodule update --init --recursive
-git submodule foreach git checkout master
-git submodule foreach git pull
+git clone --recurse-submodules https://gitlab.com/defcronyke/hobnob.git && cd hobnob
 ```  
   
 To install the project build dependencies:  
@@ -58,11 +32,9 @@ To install the project build dependencies:
 language toolchain: 
 https://rustup.rs  
   
-2. (Linux Only) If you have any trouble building and 
-running the project on Linux, maybe you need to install 
-a few more dependencies:  
+2. (Linux and macOS Only) Install some OS-specific 
+dependencies:  
 ```shell
-cd libnov
 ./install-deps.sh
 ```  
   
@@ -122,3 +94,29 @@ Nob and Nov
 Hob and Hov  
 -----------  
 Work in progress. Check back later...  
+  
+To update the project:  
+======================  
+* Linux and macOS  
+```shell
+# Run the included script:
+./update.sh
+
+# (Optional) Or run these git commands:
+git pull && \
+git submodule update --init --recursive && \
+git submodule foreach git checkout master && \
+git submodule foreach git pull
+```  
+  
+* Windows  
+```powershell
+# Run the included script:
+.\update.bat
+
+# (Optional) Or run these git commands:
+git pull
+git submodule update --init --recursive
+git submodule foreach git checkout master
+git submodule foreach git pull
+```  
