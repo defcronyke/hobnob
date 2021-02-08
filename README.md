@@ -27,6 +27,12 @@ This project is under active development, with no
 release date scheduled yet. Check back here regularly
 if you'd like to follow the progress.  
   
+To clone the project:  
+=====================  
+```shell
+git clone --recurse-submodules https://gitlab.com/defcronyke/hobnob.git && cd hobnob
+```  
+  
 To update the project if you cloned it already:  
 ===============================================  
 * Linux and macOS  
@@ -39,12 +45,6 @@ To update the project if you cloned it already:
 ```powershell
 # Run the included script:
 .\update.bat
-```  
-  
-To clone the project:  
-=====================  
-```shell
-git clone --recurse-submodules https://gitlab.com/defcronyke/hobnob.git && cd hobnob
 ```  
   
 To install the project build dependencies:  
