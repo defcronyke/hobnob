@@ -72,14 +72,8 @@ Nob and Nov
 # Compile and run the Vulkan version.
 ./run.sh
 
-# (Optional) Check if the Vulkan version is working.
-./load-image.sh
-
 # (Optional) Compile and run the OpenGL version.
 ./run-gl.sh
-
-# (Optional) Check if the OpenGL version is working.
-./load-image-gl.sh
 ```  
   
 * Windows  
@@ -87,29 +81,17 @@ Nob and Nov
 # Compile and run the Vulkan version.
 .\run.bat
 
-# (Optional) Check if the Vulkan version is working.
-.\load-image.bat
-
 # (Optional) Compile and run the DirectX 12 version.
 .\run-dx12.bat
 
-# (Optional) Check if the DirectX 12 version is working.
-.\load-image-dx12.bat
-
 # (Optional) Compile and run the DirectX 11 version.
 .\run-dx11.bat
-
-# (Optional) Check if the DirectX 11 version is working.
-.\load-image-dx11.bat
 ```  
   
 * macOS  
 ```shell
 # Compile and run the Metal version.
 ./run-metal.sh
-
-# (Optional) Check if the Metal version is working.
-./load-image-metal.sh
 ```  
   
 Hob and Hov  
