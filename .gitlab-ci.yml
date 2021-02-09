@@ -20,7 +20,7 @@ image: "rust:latest"
 # These are the GitLab CI/CD pipeline stages we want to run.
 stages:
   # - test
-  - docs
+  # - docs
   - debug-linux-x86_64
   - debug-windows-x86_64
   - release-linux-x86_64
@@ -49,23 +49,23 @@ stages:
 #       paths:  # The files found at these paths will be added to the artifacts archive for this pipeline stage.
 #         - nov/target/cov
 
-# Pipeline "docs" stage - Use cargo to auto-generate the docs for this project.
-docs:
-  stage: docs
-  needs: [  # Wait for a previous stage to finish before running this stage.
-    # "test",
-  ]
-  script:
-    - ./update.sh   # Clone all the git submodules.
-    - apt-get update && apt-get install -y libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
-    - rustc --version && cargo --version  # Display rustc and cargo versions.
-    - cd nob && cargo doc --workspace --verbose && cd ..   # Generate the project's docs with the cargo doc command.
-    - cd nov && cargo doc --workspace --verbose && cd ..
-  artifacts:
-    expire_in: never  # Keep this stage's output artifacts forever.
-    paths:  # The files found at these paths will be added to the artifacts archive for this pipeline stage.
-      - nob/target/doc
-      - nov/target/doc
+# # Pipeline "docs" stage - Use cargo to auto-generate the docs for this project.
+# docs:
+#   stage: docs
+#   needs: [  # Wait for a previous stage to finish before running this stage.
+#     # "test",
+#   ]
+#   script:
+#     - ./update.sh   # Clone all the git submodules.
+#     - apt-get update && apt-get install -y libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
+#     - rustc --version && cargo --version  # Display rustc and cargo versions.
+#     - cd nob && cargo doc --workspace --verbose && cd ..   # Generate the project's docs with the cargo doc command.
+#     - cd nov && cargo doc --workspace --verbose && cd ..
+#   artifacts:
+#     expire_in: never  # Keep this stage's output artifacts forever.
+#     paths:  # The files found at these paths will be added to the artifacts archive for this pipeline stage.
+#       - nob/target/doc
+#       - nov/target/doc
 
 # Pipeline "debug-linux-x86_64" stage - Use cargo to build the Linux x86_64 debug binary for this project.
 debug-linux-x86_64:

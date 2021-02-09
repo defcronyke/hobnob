@@ -61,33 +61,33 @@ jobs:
   #         path: |
   #           nov/target/cov
 
-  docs:
-    # needs: test
-    runs-on: ubuntu-latest
-    steps:      
-    - uses: actions/checkout@v2
+  # docs:
+  #   # needs: test
+  #   runs-on: ubuntu-latest
+  #   steps:      
+  #   - uses: actions/checkout@v2
     
-    - name: docs
-      run: |
-        ./update.sh   # Clone all the git submodules.
-        sudo apt-get update && sudo apt-get install -y libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
-        rustc --version && cargo --version  # Display rustc and cargo versions.
-        cd nob && cargo doc --workspace --verbose && cd ..   # Generate the project's docs with the cargo doc command.
-        cd nov && cargo doc --workspace --verbose && cd ..
+  #   - name: docs
+  #     run: |
+  #       ./update.sh   # Clone all the git submodules.
+  #       sudo apt-get update && sudo apt-get install -y libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
+  #       rustc --version && cargo --version  # Display rustc and cargo versions.
+  #       cd nob && cargo doc --workspace --verbose && cd ..   # Generate the project's docs with the cargo doc command.
+  #       cd nov && cargo doc --workspace --verbose && cd ..
 
-    - name: nob-docs
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage
-        path: |
-          nob/target/doc
+    # - name: nob-docs
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: coverage
+    #     path: |
+    #       nob/target/doc
 
-    - name: nov-docs
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage
-        path: |
-          nov/target/doc
+    # - name: nov-docs
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: coverage
+    #     path: |
+    #       nov/target/doc
 
   debug-linux-x86_64:
     # needs: test
@@ -148,28 +148,28 @@ jobs:
       with:
         name: nob-debug-windows-x86_64
         path: |
-          nob/target/x86_64-pc-windows-gnu/debug/nob
+          nob/target/x86_64-pc-windows-gnu/debug/nob.exe
 
     - name: nov-debug-windows-x86_64
       uses: actions/upload-artifact@v2
       with:
         name: nov-debug-windows-x86_64
         path: |
-          nov/target/x86_64-pc-windows-gnu/debug/nov
+          nov/target/x86_64-pc-windows-gnu/debug/nov.exe
 
     - name: nov-dx12-debug-windows-x86_64
       uses: actions/upload-artifact@v2
       with:
         name: nov-dx12-debug-windows-x86_64
         path: |
-          nov/target-dx12/x86_64-pc-windows-gnu/debug/nov
+          nov/target-dx12/x86_64-pc-windows-gnu/debug/nov.exe
 
     - name: nov-dx11-debug-windows-x86_64
       uses: actions/upload-artifact@v2
       with:
         name: nov-dx11-debug-windows-x86_64
         path: |
-          nov/target-dx11/x86_64-pc-windows-gnu/debug/nov
+          nov/target-dx11/x86_64-pc-windows-gnu/debug/nov.exe
 
   release-linux-x86_64:
     # needs: test
@@ -237,25 +237,25 @@ jobs:
       with:
         name: nob-release-windows-x86_64
         path: |
-          nob/target/x86_64-pc-windows-gnu/release/nob
+          nob/target/x86_64-pc-windows-gnu/release/nob.exe
 
     - name: nov-release-windows-x86_64
       uses: actions/upload-artifact@v2
       with:
         name: nov-release-windows-x86_64
         path: |
-          nov/target/x86_64-pc-windows-gnu/release/nov
+          nov/target/x86_64-pc-windows-gnu/release/nov.exe
 
     - name: nov-dx12-release-windows-x86_64
       uses: actions/upload-artifact@v2
       with:
         name: nov-dx12-release-windows-x86_64
         path: |
-          nov/target-dx12/x86_64-pc-windows-gnu/release/nov
+          nov/target-dx12/x86_64-pc-windows-gnu/release/nov.exe
 
     - name: nov-dx11-release-windows-x86_64
       uses: actions/upload-artifact@v2
       with:
         name: nov-dx11-release-windows-x86_64
         path: |
-          nov/target-dx11/x86_64-pc-windows-gnu/release/nov
+          nov/target-dx11/x86_64-pc-windows-gnu/release/nov.exe
