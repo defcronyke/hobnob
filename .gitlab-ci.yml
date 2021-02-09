@@ -83,9 +83,9 @@ debug-linux-x86_64:
   artifacts:
     expire_in: never  # Keep this stage's output artifacts forever.
     paths:  # The files found at these paths will be added to the artifacts archive for this pipeline stage.
-      - nob/target/debug
-      - nov/target/debug
-      - nov/target-gl/debug
+      - nob/target/debug/nob
+      - nov/target/debug/nov
+      - nov/target-gl/debug/nov
 
 # Pipeline "debug-windows-x86_64" - Use cargo to build the cross-compiled Windows x86_64 debug binary for this project.
 debug-windows-x86_64:
@@ -106,10 +106,10 @@ debug-windows-x86_64:
   artifacts:
     expire_in: never  # Keep this stage's output artifacts forever.
     paths:  # The files found at these paths will be added to the artifacts archive for this pipeline stage.
-      - nob/target/x86_64-pc-windows-gnu/debug
-      - nov/target/x86_64-pc-windows-gnu/debug
-      - nov/target-dx12/x86_64-pc-windows-gnu/debug
-      - nov/target-dx11/x86_64-pc-windows-gnu/debug
+      - nob/target/x86_64-pc-windows-gnu/debug/nob.exe
+      - nov/target/x86_64-pc-windows-gnu/debug/nov.exe
+      - nov/target-dx12/x86_64-pc-windows-gnu/debug/nov.exe
+      - nov/target-dx11/x86_64-pc-windows-gnu/debug/nov.exe
 
 # Pipeline "release-linux-x86_64" stage - Use cargo to build the Linux x86_64 release binary for this project.
 release-linux-x86_64:
@@ -130,9 +130,9 @@ release-linux-x86_64:
   artifacts:
     expire_in: never  # Keep this stage's output artifacts forever.
     paths:  # The files found at these paths will be added to the artifacts archive for this pipeline stage.
-      - nob/target/release
-      - nov/target/release
-      - nov/target-gl/release
+      - nob/target/release/nob
+      - nov/target/release/nov
+      - nov/target-gl/release/nov
 
 # Pipeline "release-windows-x86_64" - Use cargo to build the cross-compiled Windows x86_64 release binary for this project.
 release-windows-x86_64:
@@ -157,7 +157,7 @@ release-windows-x86_64:
   artifacts:
     expire_in: never  # Keep this stage's output artifacts forever.
     paths:  # The files found at these paths will be added to the artifacts archive for this pipeline stage.
-      - nob/target/x86_64-pc-windows-gnu/release
-      - nov/target/x86_64-pc-windows-gnu/release
-      - nov/target-dx12/x86_64-pc-windows-gnu/release
-      - nov/target-dx11/x86_64-pc-windows-gnu/release
+      - nob/target/x86_64-pc-windows-gnu/release/nob.exe
+      - nov/target/x86_64-pc-windows-gnu/release/nov.exe
+      - nov/target-dx12/x86_64-pc-windows-gnu/release/nov.exe
+      - nov/target-dx11/x86_64-pc-windows-gnu/release/nov.exe
