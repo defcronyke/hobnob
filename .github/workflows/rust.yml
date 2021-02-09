@@ -29,6 +29,7 @@
 #       - name: test
 #         run: |
 #           ./update.sh   # Clone all the git submodules.
+#           ./install-deps.sh || true   # Install OS-specific dependencies.
 #           lsb_release -a
 #           sudo apt-get update && sudo apt-get install -y bash binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev
 #           git clone https://github.com/SimonKagstrom/kcov.git
@@ -70,6 +71,7 @@
 #       - name: docs
 #         run: |
 #           ./update.sh   # Clone all the git submodules.
+#           ./install-deps.sh || true   # Install OS-specific dependencies.
 #           rustc --version && cargo --version  # Display rustc and cargo versions.
 #           cd nov && cargo doc --workspace --verbose && cd ..   # Generate the project's docs with the cargo doc command.
 
@@ -82,6 +84,7 @@
 #     - name: debug-linux-x86_64
 #       run: |
 #         ./update.sh   # Clone all the git submodules.
+#         ./install-deps.sh || true   # Install OS-specific dependencies.
 #         rustc --version && cargo --version  # Display rustc and cargo versions.
 #         cd nov && RUSTFLAGS="--emit asm -C llvm-args=-x86-asm-syntax=intel --emit obj" cargo build --verbose && cd ..   # Build the project with the cargo build command.
 
@@ -94,6 +97,7 @@
 #     - name: debug-windows-x86_64
 #       run: |
 #         ./update.sh   # Clone all the git submodules.
+#         ./install-deps.sh || true   # Install OS-specific dependencies.
 #         sudo apt-get update && sudo apt-get install -y mingw-w64  # Install the mingw-w64 cross-compiler toolchain so we can build Windows binaries from Linux.
 #         rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
 #         rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
@@ -109,6 +113,7 @@
 #     - name: release-linux-x86_64
 #       run: |
 #         ./update.sh   # Clone all the git submodules.
+#         ./install-deps.sh || true   # Install OS-specific dependencies.
 #         rustc --version && cargo --version  # Display rustc and cargo versions.
 #         cd nov && RUSTFLAGS="--emit asm -C llvm-args=-x86-asm-syntax=intel --emit obj" cargo build --release --verbose && cd ..   # Build the project with the cargo build command.
 #         strip -s nov/target/release/nov
@@ -122,6 +127,7 @@
 #     - name: release-windows-x86_64
 #       run: |
 #         ./update.sh   # Clone all the git submodules.
+#         ./install-deps.sh || true   # Install OS-specific dependencies.
 #         sudo apt-get update && sudo apt-get install -y mingw-w64  # Install the mingw-w64 cross-compiler toolchain so we can build Windows binaries from Linux.
 #         rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
 #         rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
