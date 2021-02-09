@@ -15,6 +15,7 @@ rem so furthermore, whenever legally possible, all license
 rem terms from all of the different technologies apply, with
 rem this project's license terms taking first priority.
 
+git checkout master
 git pull
 git submodule update --init --recursive
 git submodule foreach git checkout master
