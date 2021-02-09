@@ -15,25 +15,25 @@
 # this project's license terms taking first priority.
 [submodule "libhob"]
 	path = libhob
-	url = ../libhob.git
+	url = https://github.com/defcronyke/libhob.git
 [submodule "hob"]
 	path = hob
-	url = ../hob.git
+	url = https://github.com/defcronyke/hob.git
 [submodule "libnob"]
 	path = libnob
-	url = ../libnob.git
+	url = https://github.com/defcronyke/libnob.git
 [submodule "nob"]
 	path = nob
-	url = ../nob.git
+	url = https://github.com/defcronyke/nob.git
 [submodule "libhov"]
 	path = libhov
-	url = ../libhov.git
+	url = https://github.com/defcronyke/libhov.git
 [submodule "hov"]
 	path = hov
-	url = ../hov.git
+	url = https://github.com/defcronyke/hov.git
 [submodule "libnov"]
 	path = libnov
-	url = ../libnov.git
+	url = https://github.com/defcronyke/libnov.git
 [submodule "nov"]
 	path = nov
-	url = ../nov.git
+	url = https://github.com/defcronyke/nov.git
