@@ -1,7 +1,9 @@
 # Hobnob Open Base and Open View  
   
-https://gitlab.com/defcronyke/hobnob  
+[![sponsor the project](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/defcronyke)](https://github.com/sponsors/defcronyke)  
+  
 https://github.com/defcronyke/hobnob  
+https://gitlab.com/defcronyke/hobnob  
   
 Copyright (c) 2021 Jeremy Carter <jeremy@jeremycarter.ca>  
 Released under the terms of the MIT License.  
@@ -30,7 +32,7 @@ if you'd like to follow the progress.
 To clone the project:  
 =====================  
 ```shell
-git clone --recurse-submodules https://gitlab.com/defcronyke/hobnob.git && cd hobnob
+git clone --recurse-submodules https://github.com/defcronyke/hobnob.git && cd hobnob
 ```  
   
 To update the project if you cloned it already:  
