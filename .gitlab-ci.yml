@@ -32,8 +32,7 @@ stages:
 #   stage: test
 #   script:
 #     - ./update.sh   # Clone all the git submodules.
-#     - ./install-deps.sh || true   # Install OS-specific dependencies.
-#     - apt-get update && apt-get install -y lsb-release bash binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev build-essential cmake
+#     - apt-get update && apt-get install -y lsb-release bash binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev build-essential cmake libx11-dev libvulkan-dev libxcb1-dev xorg-dev
 #     - lsb_release -a
 #     - git clone https://github.com/SimonKagstrom/kcov.git
 #     - cd kcov && mkdir build && cd build && cmake .. && make -j2 && make install && cd ../..
@@ -58,7 +57,7 @@ docs:
   ]
   script:
     - ./update.sh   # Clone all the git submodules.
-    - ./install-deps.sh || true   # Install OS-specific dependencies.
+    - apt-get update && apt-get install -y libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
     - rustc --version && cargo --version  # Display rustc and cargo versions.
     - cd nob && cargo doc --workspace --verbose && cd ..   # Generate the project's docs with the cargo doc command.
     - cd nov && cargo doc --workspace --verbose && cd ..
@@ -76,7 +75,7 @@ debug-linux-x86_64:
   ]
   script:
     - ./update.sh   # Clone all the git submodules.
-    - ./install-deps.sh || true   # Install OS-specific dependencies.
+    - apt-get update && apt-get install -y libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
     - rustc --version && cargo --version  # Display rustc and cargo versions.
     - cd nob && RUSTFLAGS="--emit asm -C llvm-args=-x86-asm-syntax=intel --emit obj" cargo build --verbose && cd ..   # Build the project with the cargo build command.
     - cd nov && RUSTFLAGS="--emit asm -C llvm-args=-x86-asm-syntax=intel --emit obj" cargo build --features vulkan --verbose && cd ..
@@ -96,8 +95,7 @@ debug-windows-x86_64:
   ]
   script:
     - ./update.sh   # Clone all the git submodules.
-    - ./install-deps.sh || true   # Install OS-specific dependencies.
-    - apt-get update && apt-get install -y mingw-w64  # Install the mingw-w64 cross-compiler toolchain so we can build Windows binaries from Linux.
+    - apt-get update && apt-get install -y mingw-w64 libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
     - rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
     - rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
     - rustc --version && cargo --version  # Display rustc and cargo versions.
@@ -121,7 +119,7 @@ release-linux-x86_64:
   ]
   script:
     - ./update.sh   # Clone all the git submodules.
-    - ./install-deps.sh || true   # Install OS-specific dependencies.
+    - apt-get update && apt-get install -y libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
     - rustc --version && cargo --version  # Display rustc and cargo versions.
     - cd nob && RUSTFLAGS="--emit asm -C llvm-args=-x86-asm-syntax=intel --emit obj" cargo build --release --verbose && cd ..   # Build the project with the cargo build command.
     - cd nov && RUSTFLAGS="--emit asm -C llvm-args=-x86-asm-syntax=intel --emit obj" cargo build --features vulkan --release --verbose && cd ..
@@ -144,8 +142,7 @@ release-windows-x86_64:
   ]
   script:
     - ./update.sh   # Clone all the git submodules.
-    - ./install-deps.sh || true   # Install OS-specific dependencies.
-    - apt-get update && apt-get install -y mingw-w64  # Install the mingw-w64 cross-compiler toolchain so we can build Windows binaries from Linux.
+    - apt-get update && apt-get install -y mingw-w64 libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
     - rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
     - rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
     - rustc --version && cargo --version  # Display rustc and cargo versions.
