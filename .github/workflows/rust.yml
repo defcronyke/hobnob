@@ -1,0 +1,124 @@
+# name: github-pipeline
+
+# on:
+#   push:
+#     branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
+
+#   workflow_dispatch:
+
+# env:
+#   CARGO_TERM_COLOR: always
+
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     env:
+#       GCS_BUCKET: ${{ secrets.GCS_BUCKET }}
+#     steps:
+#       - uses: actions/checkout@v2
+
+#       - name: gsutil-setup
+#         uses: google-github-actions/setup-gcloud@master
+#         with:
+#           service_account_key: ${{ secrets.GCS_SA_KEY }}
+#           project_id: ${{ secrets.GCS_PROJECT }}
+#           export_default_credentials: true
+      
+#       - name: test
+#         run: |
+#           lsb_release -a
+#           sudo apt-get update && sudo apt-get install -y bash binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev
+#           git clone https://github.com/SimonKagstrom/kcov.git
+#           cd kcov && mkdir build && cd build && cmake .. && make -j4 && sudo make install && cd ../..
+#           rustc --version && cargo --version  # Display rustc and cargo versions.
+#           cd nov
+#           RUSTFLAGS='-C link-dead-code' cargo test --workspace --verbose  # Run the project's test suite with cargo. If any of these tests fail, we stop here.
+#           for i in `ls -rt target/debug/deps/libnov-* | sed '/\./d' | tail -n 1`; do kcov --exclude-pattern=/usr target/cov $i; done   # Generate the test coverage report with kcov for library.
+#           for i in `find target/cov -maxdepth 1 -type l`; do unlink $i; done  # Remove bad symlinks which are made by kcov for some reason.
+#           COVERAGE=$(grep -P 'percent_covered\"' target/cov/libnov*/coverage.json | grep -Po '[0-9]+.[0-9]+' | tail -n 1 | tr -d '\n')
+#           COLOUR=$(if (( `echo "$COVERAGE < 75" | bc -l` )); then echo "red"; elif (( `echo "$COVERAGE < 90" | bc -l` )); then echo "yellow"; else echo "green"; fi)
+#           echo "COLOUR=\"$COLOUR\""
+#           curl "https://img.shields.io/badge/github_coverage-$COVERAGE%25-$COLOUR" > github-coverage.svg
+#           gsutil -h "Cache-Control:public, max-age=60" cp github-coverage.svg gs://$GCS_BUCKET
+#           gsutil -h "Cache-Control:public, max-age=60" -m rsync -d -r target/cov gs://$GCS_BUCKET/cov
+#           echo "Coverage: $COVERAGE"  # Output the amount of test coverage in percent. This exact output format is expected by a setting we set on the GitLab CI/CD website.
+#           cd ..
+      
+#       - name: artifacts-badge
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: coverage-badge
+#           path: |
+#             nov/github-coverage.svg
+
+#       - name: artifacts-coverage
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: coverage
+#           path: |
+#             nov/target/cov
+
+#   docs:
+#     needs: test
+#     runs-on: ubuntu-latest
+#     steps:      
+#       - uses: actions/checkout@v2
+      
+#       - name: docs
+#         run: |
+#           rustc --version && cargo --version  # Display rustc and cargo versions.
+#           cd nov && cargo doc --workspace --verbose && cd ..   # Generate the project's docs with the cargo doc command.
+
+#   debug-linux-x86_64:
+#     needs: test
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+    
+#     - name: debug-linux-x86_64
+#       run: |
+#         rustc --version && cargo --version  # Display rustc and cargo versions.
+#         cd nov && RUSTFLAGS="--emit asm -C llvm-args=-x86-asm-syntax=intel --emit obj" cargo build --verbose && cd ..   # Build the project with the cargo build command.
+
+#   debug-windows-x86_64:
+#     needs: test
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+    
+#     - name: debug-windows-x86_64
+#       run: |
+#         sudo apt-get update && sudo apt-get install -y mingw-w64  # Install the mingw-w64 cross-compiler toolchain so we can build Windows binaries from Linux.
+#         rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
+#         rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
+#         rustc --version && cargo --version  # Display rustc and cargo versions.
+#         cd nov && RUSTFLAGS="--emit asm -C llvm-args=-x86-asm-syntax=intel --emit obj" cargo build --target x86_64-pc-windows-gnu --verbose && cd ..  # Cross-compile the project for Windows, from Linux, with the cargo build command.
+
+#   release-linux-x86_64:
+#     needs: test
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+    
+#     - name: release-linux-x86_64
+#       run: |
+#         rustc --version && cargo --version  # Display rustc and cargo versions.
+#         cd nov && RUSTFLAGS="--emit asm -C llvm-args=-x86-asm-syntax=intel --emit obj" cargo build --release --verbose && cd ..   # Build the project with the cargo build command.
+#         strip -s nov/target/release/nov
+
+#   release-windows-x86_64:
+#     needs: test
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+    
+#     - name: release-windows-x86_64
+#       run: |
+#         sudo apt-get update && sudo apt-get install -y mingw-w64  # Install the mingw-w64 cross-compiler toolchain so we can build Windows binaries from Linux.
+#         rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
+#         rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
+#         rustc --version && cargo --version  # Display rustc and cargo versions.
+#         cd nov && RUSTFLAGS="--emit asm -C llvm-args=-x86-asm-syntax=intel --emit obj" cargo build --release --target x86_64-pc-windows-gnu --verbose && cd ..  # Cross-compile the project for Windows, from Linux, with the cargo build command.
+#         strip -s nov/target/x86_64-pc-windows-gnu/release/nov.exe
