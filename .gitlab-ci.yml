@@ -70,6 +70,7 @@ stages:
 # Pipeline "debug-linux-x86_64" stage - Use cargo to build the Linux x86_64 debug binary for this project.
 debug-linux-x86_64:
   stage: debug-linux-x86_64
+  timeout: 3h
   needs: [  # Wait for a previous stage to finish before running this stage.
     # "test",
   ]
@@ -95,6 +96,7 @@ debug-linux-x86_64:
 # Pipeline "debug-windows-x86_64" - Use cargo to build the cross-compiled Windows x86_64 debug binary for this project.
 debug-windows-x86_64:
   stage: debug-windows-x86_64
+  timeout: 3h
   needs: [  # Wait for a previous stage to finish before running this stage.
     # "test",
   ]
@@ -124,6 +126,7 @@ debug-windows-x86_64:
 # Pipeline "release-linux-x86_64" stage - Use cargo to build the Linux x86_64 release binary for this project.
 release-linux-x86_64:
   stage: release-linux-x86_64
+  timeout: 3h
   needs: [  # Wait for a previous stage to finish before running this stage.
     # "test",
   ]
@@ -152,6 +155,7 @@ release-linux-x86_64:
 # Pipeline "release-windows-x86_64" - Use cargo to build the cross-compiled Windows x86_64 release binary for this project.
 release-windows-x86_64:
   stage: release-windows-x86_64
+  timeout: 3h
   needs: [  # Wait for a previous stage to finish before running this stage.
     # "test",
   ]
