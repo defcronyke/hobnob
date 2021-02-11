@@ -33,15 +33,15 @@ To download the binary release versions:
 ========================================  
 Automated builds from the master branch:  
   
-* [Linux x86_64](https://tinyurl.com/github-artifact?repo=defcronyke:Yjk1MzA1ZTgwMDdmZGIwM2MyMjA1ZGU0MGRkZDNjNjM1OGJjZTFiNQ==@defcronyke/hobnob&file=hobnob-release-linux-x86_64)  
+* [Linux x86_64](https://tinyurl.com/github-artifact?repo=defcronyke/hobnob&file=hobnob-release-linux-x86_64)  
   
-* [Windows x86_64](https://tinyurl.com/github-artifact?repo=defcronyke:Yjk1MzA1ZTgwMDdmZGIwM2MyMjA1ZGU0MGRkZDNjNjM1OGJjZTFiNQ==@defcronyke/hobnob&file=hobnob-release-windows-x86_64)  
+* [Windows x86_64](https://tinyurl.com/github-artifact?repo=defcronyke/hobnob&file=hobnob-release-windows-x86_64)  
   
 Automated debug builds from the master branch:  
   
-* [Linux x86_64 Debug](https://tinyurl.com/github-artifact?repo=defcronyke:Yjk1MzA1ZTgwMDdmZGIwM2MyMjA1ZGU0MGRkZDNjNjM1OGJjZTFiNQ==@defcronyke/hobnob&file=hobnob-debug-linux-x86_64)  
+* [Linux x86_64 Debug](https://tinyurl.com/github-artifact?repo=defcronyke/hobnob&file=hobnob-debug-linux-x86_64)  
   
-* [Windows x86_64 Debug](https://tinyurl.com/github-artifact?repo=defcronyke:Yjk1MzA1ZTgwMDdmZGIwM2MyMjA1ZGU0MGRkZDNjNjM1OGJjZTFiNQ==@defcronyke/hobnob&file=hobnob-debug-windows-x86_64)  
+* [Windows x86_64 Debug](https://tinyurl.com/github-artifact?repo=defcronyke/hobnob&file=hobnob-debug-windows-x86_64)  
   
 To clone the project:  
 =====================  
