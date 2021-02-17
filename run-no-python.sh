@@ -18,6 +18,6 @@
 pwd="$PWD"
 cd nov
 
-./run.sh $@
+./run-no-python.sh $@
 
 cd "$pwd"
