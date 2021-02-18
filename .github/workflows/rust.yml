@@ -98,11 +98,12 @@ jobs:
     - name: debug-linux-x86_64
       run: |
         ./update.sh   # Clone all the git submodules.
-        sudo apt-get update && sudo apt-get install -y libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake libpython3-dev   # Install OS-specific dependencies.
+        sudo apt-get update && sudo apt-get install -y python3 python3-dev python3-pip pyenv make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
+        cd libnov && ./install-python.sh && cd ..
         rustc --version && cargo --version  # Display rustc and cargo versions.
         cd nob && cargo build --verbose && cd ..   # Build the project with the cargo build command.
-        cd nov && cargo build --features vulkan,python --verbose && cd ..
-        cd nov && CARGO_TARGET_DIR=target-gl cargo build --features gl,python --verbose && cd ..
+        cd nov && LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features vulkan,python --verbose && cd ..
+        cd nov && CARGO_TARGET_DIR=target-gl LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features gl,python --verbose && cd ..
         mkdir -p hobnob/hobnob
         cp nov/target/debug/nov hobnob/hobnob
         cp nob/target/debug/nob hobnob/hobnob
@@ -126,14 +127,15 @@ jobs:
     - name: debug-windows-x86_64
       run: |
         ./update.sh   # Clone all the git submodules.
-        sudo apt-get update && sudo apt-get install -y mingw-w64 libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake libpython3-dev   # Install OS-specific dependencies.
+        sudo apt-get update && sudo apt-get install -y python3 python3-dev python3-pip pyenv make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev mingw-w64 libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
+        cd libnov && ./install-python.sh && cd ..
         rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
         rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
         rustc --version && cargo --version  # Display rustc and cargo versions.
         cd nob && cargo build --target x86_64-pc-windows-gnu --verbose && cd ..   # Cross-compile the project for Windows, from Linux, with the cargo build command.
-        cd nov && cargo build --features vulkan,python --target x86_64-pc-windows-gnu --verbose && cd ..
-        cd nov && CARGO_TARGET_DIR=target-dx12 cargo build --features dx12,python --target x86_64-pc-windows-gnu --verbose && cd ..
-        cd nov && CARGO_TARGET_DIR=target-dx11 cargo build --features dx11,python --target x86_64-pc-windows-gnu --verbose && cd ..
+        cd nov && LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features vulkan,python --target x86_64-pc-windows-gnu --verbose && cd ..
+        cd nov && CARGO_TARGET_DIR=target-dx12 LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features dx12,python --target x86_64-pc-windows-gnu --verbose && cd ..
+        cd nov && CARGO_TARGET_DIR=target-dx11 LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features dx11,python --target x86_64-pc-windows-gnu --verbose && cd ..
         mkdir -p hobnob/hobnob
         cp nov/target/x86_64-pc-windows-gnu/debug/nov.exe hobnob/hobnob
         cp nob/target/x86_64-pc-windows-gnu/debug/nob.exe hobnob/hobnob
@@ -158,11 +160,12 @@ jobs:
     - name: release-linux-x86_64
       run: |
         ./update.sh   # Clone all the git submodules.
-        sudo apt-get update && sudo apt-get install -y libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake libpython3-dev   # Install OS-specific dependencies.
+        sudo apt-get update && sudo apt-get install -y python3 python3-dev python3-pip pyenv make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
+        cd libnov && ./install-python.sh && cd ..
         rustc --version && cargo --version  # Display rustc and cargo versions.
         cd nob && cargo build --release --verbose && cd ..   # Build the project with the cargo build command.
-        cd nov && cargo build --features vulkan,python --release --verbose && cd ..
-        cd nov && CARGO_TARGET_DIR=target-gl,python cargo build --features gl --release --verbose && cd ..
+        cd nov && LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features vulkan,python --release --verbose && cd ..
+        cd nov && CARGO_TARGET_DIR=target-gl,python LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features gl --release --verbose && cd ..
         strip -s nob/target/release/nob
         strip -s nov/target/release/nov
         strip -s nov/target-gl/release/nov
@@ -189,14 +192,15 @@ jobs:
     - name: release-windows-x86_64
       run: |
         ./update.sh   # Clone all the git submodules.
-        sudo apt-get update && sudo apt-get install -y mingw-w64 libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake libpython3-dev   # Install OS-specific dependencies.
+        sudo apt-get update && sudo apt-get install -y python3 python3-dev python3-pip pyenv make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev mingw-w64 libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
+        cd libnov && ./install-python.sh && cd ..
         rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
         rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
         rustc --version && cargo --version  # Display rustc and cargo versions.
         cd nob && cargo build --target x86_64-pc-windows-gnu --release --verbose && cd ..   # Cross-compile the project for Windows, from Linux, with the cargo build command.
-        cd nov && cargo build --features vulkan,python --target x86_64-pc-windows-gnu --release --verbose && cd ..
-        cd nov && CARGO_TARGET_DIR=target-dx12,python cargo build --features dx12 --target x86_64-pc-windows-gnu --release --verbose && cd ..
-        cd nov && CARGO_TARGET_DIR=target-dx11,python cargo build --features dx11 --target x86_64-pc-windows-gnu --release --verbose && cd ..
+        cd nov && LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features vulkan,python --target x86_64-pc-windows-gnu --release --verbose && cd ..
+        cd nov && CARGO_TARGET_DIR=target-dx12,python LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features dx12 --target x86_64-pc-windows-gnu --release --verbose && cd ..
+        cd nov && CARGO_TARGET_DIR=target-dx11,python LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features dx11 --target x86_64-pc-windows-gnu --release --verbose && cd ..
         strip -s nob/target/x86_64-pc-windows-gnu/release/nob.exe
         strip -s nov/target/x86_64-pc-windows-gnu/release/nov.exe
         strip -s nov/target-dx12/x86_64-pc-windows-gnu/release/nov.exe
