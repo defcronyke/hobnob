@@ -102,8 +102,8 @@ jobs:
         cd libnov && source ./install-python.sh && cd ..
         echo "PATH=\"$PATH\""
         # exec "$SHELL"
-        source $HOME/.bashrc
-        echo "PATH=\"$PATH\""
+        # source $HOME/.bashrc
+        # echo "PATH=\"$PATH\""
         rustc --version && cargo --version  # Display rustc and cargo versions.
         cd nob && cargo build --verbose && cd ..   # Build the project with the cargo build command.
         cd nov && LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features vulkan,python --verbose && cd ..
