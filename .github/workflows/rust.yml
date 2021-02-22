@@ -110,6 +110,10 @@ jobs:
         # echo "PATH=\"$PATH\""
         rustc --version && cargo --version  # Display rustc and cargo versions.
         cd nob && cargo build --verbose && cd ..   # Build the project with the cargo build command.
+        LIBPYTHON_DIR="$(pyenv prefix)/lib"
+        LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//')
+        echo "LIBPYTHON_DIR=\"$LIBPYTHON_DIR\""
+        echo "LIBPYTHON_NAME=\"$LIBPYTHON_NAME\""
         cd nov && LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features vulkan,python --verbose && cd ..
         cd nov && CARGO_TARGET_DIR=target-gl LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features gl,python --verbose && cd ..
         mkdir -p hobnob/hobnob
