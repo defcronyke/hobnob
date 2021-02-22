@@ -107,10 +107,11 @@ jobs:
         unset PYENV_ROOT
         cd libnov && source ./install-python.sh && cd ..
         echo "PATH=\"$PATH\""
-        which python
-        python -V
         pyenv version
-        export PYTHON_SYS_EXECUTABLE="$(which python)"
+        pyenv which python
+        echo $(pyenv which python)
+        $(pyenv which python) -V
+        export PYTHON_SYS_EXECUTABLE="$(pyenv which python)"
         ls -al "$HOME/.pyenv/bin"
         ls -al "$HOME/.pyenv/shims"
         # exec "$SHELL"
