@@ -108,6 +108,8 @@ jobs:
         cd libnov && source ./install-python.sh && cd ..
         echo "PATH=\"$PATH\""
         which python
+        python -V
+        export PYTHON_SYS_EXECUTABLE="$(which python)"
         ls -al "$HOME/.pyenv/bin"
         ls -al "$HOME/.pyenv/shims"
         # exec "$SHELL"
