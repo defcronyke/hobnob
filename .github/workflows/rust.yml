@@ -95,6 +95,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
+    - name: add-path
+      run: |
+        echo "$HOME/.pyenv/bin" >> $GITHUB_PATH
+
     - name: debug-linux-x86_64
       run: |
         ./update.sh   # Clone all the git submodules.
