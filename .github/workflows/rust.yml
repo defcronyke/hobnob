@@ -98,6 +98,7 @@ jobs:
     - name: add-path
       run: |
         echo "$HOME/.pyenv/bin" >> $GITHUB_PATH
+        echo "$HOME/.pyenv/shims" >> $GITHUB_PATH
 
     - name: debug-linux-x86_64
       run: |
@@ -106,6 +107,9 @@ jobs:
         unset PYENV_ROOT
         cd libnov && source ./install-python.sh && cd ..
         echo "PATH=\"$PATH\""
+        which python
+        ls -al "$HOME/.pyenv/bin"
+        ls -al "$HOME/.pyenv/shims"
         # exec "$SHELL"
         # source $HOME/.bashrc
         # echo "PATH=\"$PATH\""
