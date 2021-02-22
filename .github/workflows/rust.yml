@@ -110,13 +110,22 @@ jobs:
         # echo "PATH=\"$PATH\""
         rustc --version && cargo --version  # Display rustc and cargo versions.
         cd nob && cargo build --verbose && cd ..   # Build the project with the cargo build command.
-        LIBPYTHON_DIR="$(pyenv prefix)/lib"
-        LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//')
+        # LIBPYTHON_DIR="$(pyenv prefix)/lib"
+        # LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//')
+        # ls -al "$LIBPYTHON_DIR"
+        cd nov
+        export LIBPYTHON_DIR="$(pyenv prefix)/lib"
+        export LIBPYTHON_NAME="$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//')"
+        cat ".cargo/config.tmpl" | \
+        sed "s@{LIBPYTHON_DIR}@$LIBPYTHON_DIR@g" | \
+        sed "s@{LIBPYTHON_NAME}@$LIBPYTHON_NAME@g" | \
+        tee ".cargo/config"
         echo "LIBPYTHON_DIR=\"$LIBPYTHON_DIR\""
-        ls -al "$LIBPYTHON_DIR"
         echo "LIBPYTHON_NAME=\"$LIBPYTHON_NAME\""
-        cd nov && LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features vulkan,python --verbose && cd ..
-        cd nov && CARGO_TARGET_DIR=target-gl LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features gl,python --verbose && cd ..
+        cat ".cargo/config"
+        cd ..
+        cd nov && cargo build --features vulkan,python --verbose && cd ..
+        cd nov && CARGO_TARGET_DIR=target-gl cargo build --features gl,python --verbose && cd ..
         mkdir -p hobnob/hobnob
         cp nov/target/debug/nov hobnob/hobnob
         cp nob/target/debug/nob hobnob/hobnob
