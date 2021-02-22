@@ -109,6 +109,7 @@ jobs:
         echo "PATH=\"$PATH\""
         which python
         python -V
+        pyenv version
         export PYTHON_SYS_EXECUTABLE="$(which python)"
         ls -al "$HOME/.pyenv/bin"
         ls -al "$HOME/.pyenv/shims"
