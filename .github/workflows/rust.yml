@@ -103,6 +103,7 @@ jobs:
       run: |
         ./update.sh   # Clone all the git submodules.
         sudo apt-get update && sudo apt-get install -y curl python3 python3-dev python3-pip make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
+        unset PYENV_ROOT
         cd libnov && source ./install-python.sh && cd ..
         echo "PATH=\"$PATH\""
         # exec "$SHELL"
@@ -115,7 +116,7 @@ jobs:
         cd nov
         export LIBPYTHON_DIR="$(pyenv prefix)/lib"
         ls -al "$LIBPYTHON_DIR"
-        export LIBPYTHON_NAME="$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//')"
+        export LIBPYTHON_NAME="$(basename $(ls -1t $(pyenv prefix)/lib/libpython*.a | head -n 1) | sed 's/lib//' | sed 's/\.a//')"
         # export LIBPYTHON_NAME="$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1))"
         cat ".cargo/config.tmpl" | \
         sed "s@{LIBPYTHON_DIR}@$LIBPYTHON_DIR@g" | \
