@@ -107,6 +107,9 @@ jobs:
         unset PYENV_ROOT
         cd libnov && source ./install-python.sh && cd ..
         echo "PATH=\"$PATH\""
+        python -V
+        pyenv rehash
+        python -V
         pyenv version
         pyenv which python
         echo $(pyenv which python)
