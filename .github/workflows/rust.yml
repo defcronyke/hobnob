@@ -188,7 +188,7 @@ jobs:
           ls -al "$HOME/.pyenv/bin"
           ls -al "$HOME/.pyenv/shims"
           rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
-          rustup toolchain install stable-x86_64-pc-windows-gnu --force-non-host   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
+          rustup toolchain install --force-non-host stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
           rustc --version && cargo --version  # Display rustc and cargo versions.
           cd nob && cargo build --target x86_64-pc-windows-gnu --verbose && cd ..   # Cross-compile the project for Windows, from Linux, with the cargo build command.
           cd nov
