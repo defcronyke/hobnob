@@ -184,7 +184,7 @@ jobs:
           pyenv which python
           echo $(pyenv which python)
           $(pyenv which python) -V
-          export PYTHON_SYS_EXECUTABLE="$(pyenv which python)"
+          # export PYTHON_SYS_EXECUTABLE="$(pyenv which python)"
           ls -al "$HOME/.pyenv/bin"
           ls -al "$HOME/.pyenv/shims"
           rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
@@ -192,16 +192,16 @@ jobs:
           rustc --version && cargo --version  # Display rustc and cargo versions.
           cd nob && RUST_BACKTRACE=full cargo build --target x86_64-pc-windows-gnu --verbose && cd ..   # Cross-compile the project for Windows, from Linux, with the cargo build command.
           cd nov
-          export LIBPYTHON_DIR="$(pyenv prefix)/lib"
-          ls -al "$LIBPYTHON_DIR"
-          export LIBPYTHON_NAME="$(basename $(ls -1t $(pyenv prefix)/lib/libpython*.a | head -n 1) | sed 's/lib//' | sed 's/\.a//')"
+          # export LIBPYTHON_DIR="$(pyenv prefix)/lib"
+          # ls -al "$LIBPYTHON_DIR"
+          # export LIBPYTHON_NAME="$(basename $(ls -1t $(pyenv prefix)/lib/libpython*.a | head -n 1) | sed 's/lib//' | sed 's/\.a//')"
           # export LIBPYTHON_NAME="$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1))"
           # cat ".cargo/config.tmpl" | \
           # sed "s@{LIBPYTHON_DIR}@$LIBPYTHON_DIR@g" | \
           # sed "s@{LIBPYTHON_NAME}@$LIBPYTHON_NAME@g" | \
           # tee ".cargo/config"
-          echo "LIBPYTHON_DIR=\"$LIBPYTHON_DIR\""
-          echo "LIBPYTHON_NAME=\"$LIBPYTHON_NAME\""
+          # echo "LIBPYTHON_DIR=\"$LIBPYTHON_DIR\""
+          # echo "LIBPYTHON_NAME=\"$LIBPYTHON_NAME\""
           # cat ".cargo/config"
           cd ..
           cd nov && RUST_BACKTRACE=full cargo build --features vulkan,python --target x86_64-pc-windows-gnu --verbose && cd ..
