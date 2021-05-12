@@ -184,7 +184,7 @@ jobs:
           pyenv which python
           echo $(pyenv which python)
           $(pyenv which python) -V
-          # export PYTHON_SYS_EXECUTABLE="$(pyenv which python)"
+          export PYTHON_SYS_EXECUTABLE="$(pyenv which python)"
           ls -al "$HOME/.pyenv/bin"
           ls -al "$HOME/.pyenv/shims"
           rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
