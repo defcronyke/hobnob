@@ -161,6 +161,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: add-path
+        run: |
+          echo "$HOME/.pyenv/bin" >> $GITHUB_PATH
+          echo "$HOME/.pyenv/shims" >> $GITHUB_PATH
+
       - name: debug-windows-x86_64
         run: |
           ./update.sh   # Clone all the git submodules.
