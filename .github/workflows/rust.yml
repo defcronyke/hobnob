@@ -118,7 +118,7 @@ jobs:
           ls -al "$HOME/.pyenv/bin"
           ls -al "$HOME/.pyenv/shims"
           rustc --version && cargo --version  # Display rustc and cargo versions.
-          cd nob && cargo build --verbose && cd ..   # Build the project with the cargo build command.
+          cd nob && RUST_BACKTRACE=1 cargo build --verbose && cd ..   # Build the project with the cargo build command.
           # LIBPYTHON_DIR="$(pyenv prefix)/lib"
           # LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//')
           cd nov
@@ -134,8 +134,8 @@ jobs:
           echo "LIBPYTHON_NAME=\"$LIBPYTHON_NAME\""
           cat ".cargo/config"
           cd ..
-          cd nov && cargo build --features vulkan,python --verbose && cd ..
-          cd nov && CARGO_TARGET_DIR=target-gl cargo build --features gl,python --verbose && cd ..
+          cd nov && RUST_BACKTRACE=1 cargo build --features vulkan,python --verbose && cd ..
+          cd nov && RUST_BACKTRACE=1 CARGO_TARGET_DIR=target-gl cargo build --features gl,python --verbose && cd ..
           mkdir -p hobnob/hobnob
           # cp nov/target/debug/nov hobnob/hobnob
           # cp nob/target/debug/nob hobnob/hobnob
@@ -190,7 +190,7 @@ jobs:
           rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
           rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
           rustc --version && cargo --version  # Display rustc and cargo versions.
-          cd nob && cargo build --target x86_64-pc-windows-gnu --verbose && cd ..   # Cross-compile the project for Windows, from Linux, with the cargo build command.
+          cd nob && RUST_BACKTRACE=1 cargo build --target x86_64-pc-windows-gnu --verbose && cd ..   # Cross-compile the project for Windows, from Linux, with the cargo build command.
           cd nov
           export LIBPYTHON_DIR="$(pyenv prefix)/lib"
           ls -al "$LIBPYTHON_DIR"
@@ -204,9 +204,9 @@ jobs:
           echo "LIBPYTHON_NAME=\"$LIBPYTHON_NAME\""
           cat ".cargo/config"
           cd ..
-          cd nov && cargo build --features vulkan,python --target x86_64-pc-windows-gnu --verbose && cd ..
-          cd nov && CARGO_TARGET_DIR=target-dx12 cargo build --features dx12,python --target x86_64-pc-windows-gnu --verbose && cd ..
-          cd nov && CARGO_TARGET_DIR=target-dx11 cargo build --features dx11,python --target x86_64-pc-windows-gnu --verbose && cd ..
+          cd nov && RUST_BACKTRACE=1 cargo build --features vulkan,python --target x86_64-pc-windows-gnu --verbose && cd ..
+          cd nov && RUST_BACKTRACE=1 CARGO_TARGET_DIR=target-dx12 cargo build --features dx12,python --target x86_64-pc-windows-gnu --verbose && cd ..
+          cd nov && RUST_BACKTRACE=1 CARGO_TARGET_DIR=target-dx11 cargo build --features dx11,python --target x86_64-pc-windows-gnu --verbose && cd ..
           mkdir -p hobnob/hobnob
           cp nov/target/x86_64-pc-windows-gnu/debug/nov.exe hobnob/hobnob
           cp nob/target/x86_64-pc-windows-gnu/debug/nob.exe hobnob/hobnob
