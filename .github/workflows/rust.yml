@@ -173,7 +173,7 @@ jobs:
           # cd libnov && ./install-python.sh && cd ..
           # # exec "$SHELL"
           # source $HOME/.bashrc
-          sudo apt-get update && sudo apt-get install -y --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev python-openssl libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends make build-essential mingw-w64 libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev python-openssl libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
           unset PYENV_ROOT
           cd libnov && source ./install-python.sh && cd ..
           echo "PATH=\"$PATH\""
@@ -188,7 +188,7 @@ jobs:
           ls -al "$HOME/.pyenv/bin"
           ls -al "$HOME/.pyenv/shims"
           rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
-          rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
+          rustup toolchain install stable-x86_64-pc-windows-gnu --force-non-host   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
           rustc --version && cargo --version  # Display rustc and cargo versions.
           cd nob && cargo build --target x86_64-pc-windows-gnu --verbose && cd ..   # Cross-compile the project for Windows, from Linux, with the cargo build command.
           cd nov
