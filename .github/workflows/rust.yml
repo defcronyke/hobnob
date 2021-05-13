@@ -195,10 +195,12 @@ jobs:
           cp nob/target/x86_64-pc-windows-gnu/debug/nob.exe hobnob/hobnob
           cp -r libnov/data hobnob/hobnob
           cp -r libnov/shader hobnob/hobnob
+          cp -r nov/python-cross-win64 hobnob/hobnob/python
           cp nov/target-dx12/x86_64-pc-windows-gnu/debug/nov.exe hobnob/hobnob/nov-dx12.exe
           cp nov/target-dx11/x86_64-pc-windows-gnu/debug/nov.exe hobnob/hobnob/nov-dx11.exe
           cp nov/target/x86_64-pc-windows-gnu/debug/python39.dll hobnob/hobnob
           cp nov/target/x86_64-pc-windows-gnu/debug/python3.9.dll hobnob/hobnob
+          printf "@echo off\nsetlocal\nset PYTHONPATH=python && set PYTHONHOME=python\\Python-3.9.1 && nov.exe\nendlocal\n" | tee hobnob/hobnob/hobnob.bat
 
       - name: hobnob-debug-windows-x86_64
         uses: actions/upload-artifact@v2
@@ -318,12 +320,14 @@ jobs:
           mkdir -p hobnob/hobnob
           cp -r libnov/data hobnob/hobnob
           cp -r libnov/shader hobnob/hobnob
+          cp -r nov/python-cross-win64 hobnob/hobnob/python
           cp nob/target/x86_64-pc-windows-gnu/release/nob.exe hobnob/hobnob
           cp nov/target/x86_64-pc-windows-gnu/release/nov.exe hobnob/hobnob
           cp nov/target-dx12/x86_64-pc-windows-gnu/release/nov.exe hobnob/hobnob/nov-dx12.exe
           cp nov/target-dx11/x86_64-pc-windows-gnu/release/nov.exe hobnob/hobnob/nov-dx11.exe
           cp nov/target/x86_64-pc-windows-gnu/release/python39.dll hobnob/hobnob
           cp nov/target/x86_64-pc-windows-gnu/release/python3.9.dll hobnob/hobnob
+          printf "@echo off\nsetlocal\nset PYTHONPATH=python && set PYTHONHOME=python\\Python-3.9.1 && nov.exe\nendlocal\n" | tee hobnob/hobnob/hobnob.bat
 
       - name: hobnob-release-windows-x86_64
         uses: actions/upload-artifact@v2
