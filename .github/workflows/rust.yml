@@ -175,7 +175,7 @@ jobs:
           # source $HOME/.bashrc
           sudo apt-get update && sudo apt-get install -y --no-install-recommends make build-essential mingw-w64 libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev python-openssl libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
           unset PYENV_ROOT
-          cd libnov && source ./install-python.sh && cd ..
+          cd libnov && source ./install-python.sh --cross-win64 && cd ..
           echo "PATH=\"$PATH\""
           python -V
           pyenv rehash
