@@ -119,29 +119,13 @@ jobs:
           ls -al "$HOME/.pyenv/shims"
           rustc --version && cargo --version  # Display rustc and cargo versions.
           cd nob && RUST_BACKTRACE=full cargo build --verbose && cd ..   # Build the project with the cargo build command.
-          # LIBPYTHON_DIR="$(pyenv prefix)/lib"
-          # LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//')
           cd nov
           export LIBPYTHON_DIR="$(pyenv prefix)/lib"
           ls -al "$LIBPYTHON_DIR"
-          # export LIBPYTHON_NAME="$(basename $(ls -1t $(pyenv prefix)/lib/libpython*.a | head -n 1) | sed 's/lib//' | sed 's/\.a//')"
-          # export LIBPYTHON_NAME="$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1))"
-          # cat ".cargo/config.tmpl" | \
-          # sed "s@{LIBPYTHON_DIR}@$LIBPYTHON_DIR@g" | \
-          # sed "s@{LIBPYTHON_NAME}@$LIBPYTHON_NAME@g" | \
-          # tee ".cargo/config"
-          # echo "LIBPYTHON_DIR=\"$LIBPYTHON_DIR\""
-          # echo "LIBPYTHON_NAME=\"$LIBPYTHON_NAME\""
-          # cat ".cargo/config"
           cd ..
           cd nov && RUST_BACKTRACE=full cargo build --features vulkan,python --verbose && cd ..
           cd nov && RUST_BACKTRACE=full CARGO_TARGET_DIR=target-gl cargo build --features gl,python --verbose && cd ..
           mkdir -p hobnob/hobnob
-          # cp nov/target/debug/nov hobnob/hobnob
-          # cp nob/target/debug/nob hobnob/hobnob
-          # cp -r libnov/data hobnob/hobnob
-          # cp -r libnov/shader hobnob/hobnob
-          # cp nov/target-gl/debug/nov hobnob/hobnob/nov-gl
           cp -r libnov/data hobnob/hobnob
           cp -r libnov/shader hobnob/hobnob
           cp nob/target/debug/nob hobnob/hobnob
@@ -213,6 +197,8 @@ jobs:
           cp -r libnov/shader hobnob/hobnob
           cp nov/target-dx12/x86_64-pc-windows-gnu/debug/nov.exe hobnob/hobnob/nov-dx12.exe
           cp nov/target-dx11/x86_64-pc-windows-gnu/debug/nov.exe hobnob/hobnob/nov-dx11.exe
+          cp nov/target/x86_64-pc-windows-gnu/debug/python39.dll hobnob/hobnob
+          cp nov/target/x86_64-pc-windows-gnu/debug/python3.9.dll hobnob/hobnob
 
       - name: hobnob-debug-windows-x86_64
         uses: actions/upload-artifact@v2
@@ -227,25 +213,44 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: add-path
+        run: |
+          echo "$HOME/.pyenv/bin" >> $GITHUB_PATH
+          echo "$HOME/.pyenv/shims" >> $GITHUB_PATH
+
       - name: release-linux-x86_64
         run: |
           ./update.sh   # Clone all the git submodules.
-          sudo apt-get update && sudo apt-get install -y curl python3 python3-dev python3-pip make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
-          cd libnov && ./install-python.sh && cd ..
-          # exec "$SHELL"
-          source $HOME/.bashrc
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev python-openssl libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
+          unset PYENV_ROOT
+          cd libnov && source ./install-python.sh && cd ..
+          echo "PATH=\"$PATH\""
+          python -V
+          pyenv rehash
+          python -V
+          pyenv version
+          pyenv which python
+          echo $(pyenv which python)
+          $(pyenv which python) -V
+          export PYTHON_SYS_EXECUTABLE="$(pyenv which python)"
+          ls -al "$HOME/.pyenv/bin"
+          ls -al "$HOME/.pyenv/shims"
           rustc --version && cargo --version  # Display rustc and cargo versions.
-          cd nob && cargo build --release --verbose && cd ..   # Build the project with the cargo build command.
-          cd nov && LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features vulkan,python --release --verbose && cd ..
-          cd nov && CARGO_TARGET_DIR=target-gl,python LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features gl --release --verbose && cd ..
+          cd nob && RUST_BACKTRACE=full cargo build --release --verbose && cd ..   # Build the project with the cargo build command.
+          cd nov
+          export LIBPYTHON_DIR="$(pyenv prefix)/lib"
+          ls -al "$LIBPYTHON_DIR"
+          cd ..
+          cd nov && RUST_BACKTRACE=full cargo build --release --features vulkan,python --verbose && cd ..
+          cd nov && RUST_BACKTRACE=full CARGO_TARGET_DIR=target-gl cargo build --release --features gl,python --verbose && cd ..
           strip -s nob/target/release/nob
           strip -s nov/target/release/nov
           strip -s nov/target-gl/release/nov
           mkdir -p hobnob/hobnob
-          cp nov/target/release/nov hobnob/hobnob
-          cp nob/target/release/nob hobnob/hobnob
           cp -r libnov/data hobnob/hobnob
           cp -r libnov/shader hobnob/hobnob
+          cp nob/target/release/nob hobnob/hobnob
+          cp nov/target/release/nov hobnob/hobnob
           cp nov/target-gl/release/nov hobnob/hobnob/nov-gl
 
       - name: hobnob-release-linux-x86_64
@@ -261,31 +266,64 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: add-path
+        run: |
+          echo "$HOME/.pyenv/bin" >> $GITHUB_PATH
+          echo "$HOME/.pyenv/shims" >> $GITHUB_PATH
+
       - name: release-windows-x86_64
         run: |
           ./update.sh   # Clone all the git submodules.
-          sudo apt-get update && sudo apt-get install -y curl python3 python3-dev python3-pip make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev mingw-w64 libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
-          cd libnov && ./install-python.sh && cd ..
-          # exec "$SHELL"
-          source $HOME/.bashrc
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends make build-essential mingw-w64 libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev python-openssl libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake   # Install OS-specific dependencies.
+          unset PYENV_ROOT
+          cd libnov && source ./install-python.sh && cd ..
+          cd libnov && ./install-python-cross-win64.sh && cd ..
+          echo "PATH=\"$PATH\""
+          python -V
+          pyenv rehash
+          python -V
+          pyenv version
+          pyenv which python
+          echo $(pyenv which python)
+          $(pyenv which python) -V
+          echo "Setting Python variables..."
+          echo "PWD=$PWD"
+          echo ""
+          ls -al "$PWD"
+          echo ""
+          ls -al "$PWD/nov"
+          echo ""
+          ls -al "$PWD/nov/python-cross-win64"
+          echo ""
+          export PYO3_CROSS_INCLUDE_DIR="$(pyenv prefix)/include/python3.9"
+          export PYO3_CROSS_LIB_DIR="$PWD/nov/python-cross-win64"
+          export PYTHONHOME="$PWD/nov/python-cross-win64/Python-3.9.1"
+          export PYTHONPATH="$PWD/nov/python-cross-win64/Python-3.9.1"
+          export PYTHON_SYS_EXECUTABLE="$PWD/nov/python-cross-win64/python.exe"
+          ls -al "$HOME/.pyenv/bin"
+          ls -al "$HOME/.pyenv/shims"
           rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
           rustup toolchain install stable-x86_64-pc-windows-gnu   # Install the Rust Windows cross-compiling tools for cargo with the rustup command.
           rustc --version && cargo --version  # Display rustc and cargo versions.
-          cd nob && cargo build --target x86_64-pc-windows-gnu --release --verbose && cd ..   # Cross-compile the project for Windows, from Linux, with the cargo build command.
-          cd nov && LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features vulkan,python --target x86_64-pc-windows-gnu --release --verbose && cd ..
-          cd nov && CARGO_TARGET_DIR=target-dx12,python LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features dx12 --target x86_64-pc-windows-gnu --release --verbose && cd ..
-          cd nov && CARGO_TARGET_DIR=target-dx11,python LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features dx11 --target x86_64-pc-windows-gnu --release --verbose && cd ..
+          cd nob && RUST_BACKTRACE=full cargo build --release --target x86_64-pc-windows-gnu --verbose && cd ..   # Cross-compile the project for Windows, from Linux, with the cargo build command.
+          cd nov
+          cd ..
+          cd nov && RUST_BACKTRACE=full cargo build --release --features vulkan,python --target x86_64-pc-windows-gnu --verbose && cd ..
+          cd nov && RUST_BACKTRACE=full CARGO_TARGET_DIR=target-dx12 cargo build --release --features dx12,python --target x86_64-pc-windows-gnu --verbose && cd ..
+          cd nov && RUST_BACKTRACE=full CARGO_TARGET_DIR=target-dx11 cargo build --release --features dx11,python --target x86_64-pc-windows-gnu --verbose && cd ..
           strip -s nob/target/x86_64-pc-windows-gnu/release/nob.exe
           strip -s nov/target/x86_64-pc-windows-gnu/release/nov.exe
           strip -s nov/target-dx12/x86_64-pc-windows-gnu/release/nov.exe
           strip -s nov/target-dx11/x86_64-pc-windows-gnu/release/nov.exe
           mkdir -p hobnob/hobnob
-          cp nov/target/x86_64-pc-windows-gnu/release/nov.exe hobnob/hobnob
-          cp nob/target/x86_64-pc-windows-gnu/release/nob.exe hobnob/hobnob
           cp -r libnov/data hobnob/hobnob
           cp -r libnov/shader hobnob/hobnob
+          cp nob/target/x86_64-pc-windows-gnu/release/nob.exe hobnob/hobnob
+          cp nov/target/x86_64-pc-windows-gnu/release/nov.exe hobnob/hobnob
           cp nov/target-dx12/x86_64-pc-windows-gnu/release/nov.exe hobnob/hobnob/nov-dx12.exe
           cp nov/target-dx11/x86_64-pc-windows-gnu/release/nov.exe hobnob/hobnob/nov-dx11.exe
+          cp nov/target/x86_64-pc-windows-gnu/release/python39.dll hobnob/hobnob
+          cp nov/target/x86_64-pc-windows-gnu/release/python3.9.dll hobnob/hobnob
 
       - name: hobnob-release-windows-x86_64
         uses: actions/upload-artifact@v2
