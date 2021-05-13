@@ -131,6 +131,15 @@ jobs:
           cp nob/target/debug/nob hobnob/hobnob
           cp nov/target/debug/nov hobnob/hobnob
           cp nov/target-gl/debug/nov hobnob/hobnob/nov-gl
+          chmod 755 hobnob/hobnob/nob
+          chmod 755 hobnob/hobnob/nov
+          chmod 755 hobnob/hobnob/nov-gl
+          printf "#!/bin/bash\n\n./nob\n" | tee hobnob/hobnob/nob.sh
+          printf "#!/bin/bash\n\n./nov\n" | tee hobnob/hobnob/hobnob.sh
+          printf "#!/bin/bash\n\n./nov-gl\n" | tee hobnob/hobnob/hobnob-gl.sh
+          chmod 755 hobnob/hobnob/nob.sh
+          chmod 755 hobnob/hobnob/hobnob.sh
+          chmod 755 hobnob/hobnob/hobnob-gl.sh
 
       - name: hobnob-debug-linux-x86_64
         uses: actions/upload-artifact@v2
@@ -200,7 +209,10 @@ jobs:
           cp nov/target-dx11/x86_64-pc-windows-gnu/debug/nov.exe hobnob/hobnob/nov-dx11.exe
           cp nov/target/x86_64-pc-windows-gnu/debug/python39.dll hobnob/hobnob
           cp nov/target/x86_64-pc-windows-gnu/debug/python3.9.dll hobnob/hobnob
+          printf "@echo off\nsetlocal\nset PYTHONPATH=%cd%\\python&& set PYTHONHOME=%cd%\\python\\Python-3.9.1&& nob.exe\nendlocal\n" | tee hobnob/hobnob/nob.bat
           printf "@echo off\nsetlocal\nset PYTHONPATH=%cd%\\python&& set PYTHONHOME=%cd%\\python\\Python-3.9.1&& nov.exe\nendlocal\n" | tee hobnob/hobnob/hobnob.bat
+          printf "@echo off\nsetlocal\nset PYTHONPATH=%cd%\\python&& set PYTHONHOME=%cd%\\python\\Python-3.9.1&& nov-dx12.exe\nendlocal\n" | tee hobnob/hobnob/hobnob-dx12.bat
+          printf "@echo off\nsetlocal\nset PYTHONPATH=%cd%\\python&& set PYTHONHOME=%cd%\\python\\Python-3.9.1&& nov-dx11.exe\nendlocal\n" | tee hobnob/hobnob/hobnob-dx11.bat
 
       - name: hobnob-debug-windows-x86_64
         uses: actions/upload-artifact@v2
@@ -254,6 +266,15 @@ jobs:
           cp nob/target/release/nob hobnob/hobnob
           cp nov/target/release/nov hobnob/hobnob
           cp nov/target-gl/release/nov hobnob/hobnob/nov-gl
+          chmod 755 hobnob/hobnob/nob
+          chmod 755 hobnob/hobnob/nov
+          chmod 755 hobnob/hobnob/nov-gl
+          printf "#!/bin/bash\n\n./nob\n" | tee hobnob/hobnob/nob.sh
+          printf "#!/bin/bash\n\n./nov\n" | tee hobnob/hobnob/hobnob.sh
+          printf "#!/bin/bash\n\n./nov-gl\n" | tee hobnob/hobnob/hobnob-gl.sh
+          chmod 755 hobnob/hobnob/nob.sh
+          chmod 755 hobnob/hobnob/hobnob.sh
+          chmod 755 hobnob/hobnob/hobnob-gl.sh
 
       - name: hobnob-release-linux-x86_64
         uses: actions/upload-artifact@v2
@@ -327,7 +348,10 @@ jobs:
           cp nov/target-dx11/x86_64-pc-windows-gnu/release/nov.exe hobnob/hobnob/nov-dx11.exe
           cp nov/target/x86_64-pc-windows-gnu/release/python39.dll hobnob/hobnob
           cp nov/target/x86_64-pc-windows-gnu/release/python3.9.dll hobnob/hobnob
+          printf "@echo off\nsetlocal\nset PYTHONPATH=%cd%\\python&& set PYTHONHOME=%cd%\\python\\Python-3.9.1&& nob.exe\nendlocal\n" | tee hobnob/hobnob/nob.bat
           printf "@echo off\nsetlocal\nset PYTHONPATH=%cd%\\python&& set PYTHONHOME=%cd%\\python\\Python-3.9.1&& nov.exe\nendlocal\n" | tee hobnob/hobnob/hobnob.bat
+          printf "@echo off\nsetlocal\nset PYTHONPATH=%cd%\\python&& set PYTHONHOME=%cd%\\python\\Python-3.9.1&& nov-dx12.exe\nendlocal\n" | tee hobnob/hobnob/hobnob-dx12.bat
+          printf "@echo off\nsetlocal\nset PYTHONPATH=%cd%\\python&& set PYTHONHOME=%cd%\\python\\Python-3.9.1&& nov-dx11.exe\nendlocal\n" | tee hobnob/hobnob/hobnob-dx11.bat
 
       - name: hobnob-release-windows-x86_64
         uses: actions/upload-artifact@v2
