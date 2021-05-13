@@ -181,10 +181,10 @@ jobs:
           echo $(pyenv which python)
           $(pyenv which python) -V
           export PYO3_CROSS_INCLUDE_DIR="/usr/include/python3.9"
-          export PYO3_CROSS_LIB_DIR="$PWD/python-cross-win64"
-          export PYTHONHOME="$PWD/python-cross-win64/Python-3.9.1"
-          export PYTHONPATH="$PWD/python-cross-win64/Python-3.9.1"
-          export PYTHON_SYS_EXECUTABLE="$PWD/python-cross-win64/python.exe"
+          export PYO3_CROSS_LIB_DIR="$PWD/nov/python-cross-win64"
+          export PYTHONHOME="$PWD/nov/python-cross-win64/Python-3.9.1"
+          export PYTHONPATH="$PWD/nov/python-cross-win64/Python-3.9.1"
+          export PYTHON_SYS_EXECUTABLE="$PWD/nov/python-cross-win64/python.exe"
           ls -al "$HOME/.pyenv/bin"
           ls -al "$HOME/.pyenv/shims"
           rustup target add x86_64-pc-windows-gnu   # Add the mingw-w64 Rust target to cargo with the rustup command.
