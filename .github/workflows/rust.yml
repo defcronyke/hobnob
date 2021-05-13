@@ -190,7 +190,7 @@ jobs:
           echo ""
           ls -al "$PWD/nov/python-cross-win64"
           echo ""
-          export PYO3_CROSS_INCLUDE_DIR="/usr/include/python3.9"
+          export PYO3_CROSS_INCLUDE_DIR="$(pyenv prefix)/include/python3.9"
           export PYO3_CROSS_LIB_DIR="$PWD/nov/python-cross-win64"
           export PYTHONHOME="$PWD/nov/python-cross-win64/Python-3.9.1"
           export PYTHONPATH="$PWD/nov/python-cross-win64/Python-3.9.1"
