@@ -76,20 +76,44 @@ debug-linux-x86_64:
   # "test",
   script:
     - ./update.sh # Clone all the git submodules.
-    - apt-get update && apt-get install -y curl python3 python3-dev python3-pip make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake # Install OS-specific dependencies.
-    - cd libnov && ./install-python.sh && cd ..
-    # - exec "$SHELL"
-    - source $HOME/.bashrc
+    - sudo apt-get update && sudo apt-get install -y --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev python-openssl libx11-dev libvulkan-dev libxcb1-dev xorg-dev cmake # Install OS-specific dependencies.
+    - unset PYENV_ROOT
+    - cd libnov && source ./install-python.sh && cd ..
+    - export PATH="$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH"
+    - echo "PATH=\"$PATH\""
+    - python -V
+    - pyenv rehash
+    - python -V
+    - pyenv version
+    - pyenv which python
+    - echo $(pyenv which python)
+    - $(pyenv which python) -V
+    - export PYTHON_SYS_EXECUTABLE="$(pyenv which python)"
+    - ls -al "$HOME/.pyenv/bin"
+    - ls -al "$HOME/.pyenv/shims"
     - rustc --version && cargo --version # Display rustc and cargo versions.
-    - cd nob && cargo build --verbose && cd .. # Build the project with the cargo build command.
-    - cd nov && LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features vulkan,python --verbose && cd ..
-    - cd nov && CARGO_TARGET_DIR=target-gl LIBPYTHON_DIR="$(pyenv prefix)/lib" LIBPYTHON_NAME=$(basename $(ls -1t $(pyenv prefix)/lib/libpython* | head -n 1) | sed 's/lib//' | sed 's/\.a//') cargo build --features gl,python --verbose && cd ..
-    - mkdir -p hobnob
-    - cp nov/target/debug/nov hobnob
-    - cp nob/target/debug/nob hobnob
-    - cp -r libnov/data hobnob
-    - cp -r libnov/shader hobnob
-    - cp nov/target-gl/debug/nov hobnob/nov-gl
+    - cd nob && RUST_BACKTRACE=full cargo build --verbose && cd .. # Build the project with the cargo build command.
+    - cd nov
+    - export LIBPYTHON_DIR="$(pyenv prefix)/lib"
+    - ls -al "$LIBPYTHON_DIR"
+    - cd ..
+    - cd nov && RUST_BACKTRACE=full cargo build --features vulkan,python --verbose && cd ..
+    - cd nov && RUST_BACKTRACE=full CARGO_TARGET_DIR=target-gl cargo build --features gl,python --verbose && cd ..
+    - mkdir -p hobnob/hobnob
+    - cp -r libnov/data hobnob/hobnob
+    - cp -r libnov/shader hobnob/hobnob
+    - cp nob/target/debug/nob hobnob/hobnob
+    - cp nov/target/debug/nov hobnob/hobnob
+    - cp nov/target-gl/debug/nov hobnob/hobnob/nov-gl
+    - chmod 755 hobnob/hobnob/nob
+    - chmod 755 hobnob/hobnob/nov
+    - chmod 755 hobnob/hobnob/nov-gl
+    - printf "#!/bin/bash\n\n./nob\n" | tee hobnob/hobnob/nob.sh
+    - printf "#!/bin/bash\n\n./nov\n" | tee hobnob/hobnob/hobnob.sh
+    - printf "#!/bin/bash\n\n./nov-gl\n" | tee hobnob/hobnob/hobnob-gl.sh
+    - chmod 755 hobnob/hobnob/nob.sh
+    - chmod 755 hobnob/hobnob/hobnob.sh
+    - chmod 755 hobnob/hobnob/hobnob-gl.sh
   artifacts:
     name: hobnob-debug-linux-x86_64
     # expire_in: never  # Keep this stage's output artifacts forever.
