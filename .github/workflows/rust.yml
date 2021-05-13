@@ -180,6 +180,9 @@ jobs:
           pyenv which python
           echo $(pyenv which python)
           $(pyenv which python) -V
+          echo "Setting Python variables..."
+          echo "PWD=$PWD"
+          ls -al "$PWD"
           export PYO3_CROSS_INCLUDE_DIR="/usr/include/python3.9"
           export PYO3_CROSS_LIB_DIR="$PWD/nov/python-cross-win64"
           export PYTHONHOME="$PWD/nov/python-cross-win64/Python-3.9.1"
