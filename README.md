@@ -17,17 +17,15 @@ these are known as Hobnob.
 
 The following video technologies are currently supported:
 
----
+- Nob and Nov:
 
-## Nob and Nov
+  - Linux: Vulkan and OpenGL
+  - Windows: Vulkan, DirectX 12, and DirectX 11
+  - macOS: Metal
 
-- Linux: Vulkan and OpenGL
-- Windows: Vulkan, DirectX 12, and DirectX 11
-- macOS: Metal
+- Hob and Hov:
 
-## Hob and Hov
-
-- Work in progress
+  - Work in progress
 
 This project is under active development, with no
 release date scheduled yet. Check back here regularly
@@ -37,17 +35,31 @@ if you'd like to follow the progress.
 
 ### Automated builds from the master branch
 
+---
+
 - [Linux x86_64 (GitHub mirror)](https://tinyurl.com/github-artifact?repo=defcronyke/hobnob&file=hobnob-release-linux-x86_64)
 - [Linux x86_64 (GitLab mirror)](https://gitlab.com/defcronyke/hobnob/-/jobs/artifacts/master/download?job=release-linux-x86_64)
+
+---
+
 - [Windows x86_64 (GitHub mirror)](https://tinyurl.com/github-artifact?repo=defcronyke/hobnob&file=hobnob-release-windows-x86_64)
 - [Windows x86_64 (GitLab mirror)](https://gitlab.com/defcronyke/hobnob/-/jobs/artifacts/master/download?job=release-windows-x86_64)
 
+---
+
 ### Automated debug builds from the master branch
+
+---
 
 - [Linux x86_64 Debug (GitHub mirror)](https://tinyurl.com/github-artifact?repo=defcronyke/hobnob&file=hobnob-debug-linux-x86_64)
 - [Linux x86_64 Debug (GitLab mirror)](https://gitlab.com/defcronyke/hobnob/-/jobs/artifacts/master/download?job=debug-linux-x86_64)
+
+---
+
 - [Windows x86_64 Debug (GitHub mirror)](https://tinyurl.com/github-artifact?repo=defcronyke/hobnob&file=hobnob-debug-windows-x86_64)
 - [Windows x86_64 Debug (GitLab mirror)](https://gitlab.com/defcronyke/hobnob/-/jobs/artifacts/master/download?job=debug-windows-x86_64)
+
+---
 
 ## To clone the project
 
