@@ -5,8 +5,11 @@
 [https://github.com/defcronyke/hobnob](https://github.com/defcronyke/hobnob)  
 [https://gitlab.com/defcronyke/hobnob](https://gitlab.com/defcronyke/hobnob)
 
-Copyright (c) 2021 Jeremy Carter <jeremy@jeremycarter.ca>  
+`Copyright (c) 2021 Jeremy Carter <jeremy@jeremycarter.ca>`
+
 Released under the terms of the MIT License.
+
+---
 
 A set of Open Base and Open View systems for software
 projects on Linux, Windows, and macOS.
