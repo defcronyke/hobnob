@@ -154,9 +154,12 @@ debug-windows-x86_64:
     - echo ""
     - export PYO3_CROSS_INCLUDE_DIR="$(pyenv prefix)/include/python3.9"
     - export PYO3_CROSS_LIB_DIR="$PWD/nov/python-cross-win64"
-    - export PYTHONHOME="$PWD/nov/python-cross-win64/Python-3.9.1"
-    - export PYTHONPATH="$PWD/nov/python-cross-win64/Python-3.9.1:$PWD/libnov/data/src:$PYTHONPATH"
     - export PYTHON_SYS_EXECUTABLE="$PWD/nov/python-cross-win64/python.exe"
+    - export PYTHONHOME="$PWD/nov/python-cross-win64/Python-3.9.1"
+    - cd nov/python-cross-win64/Python-3.9.1
+    - ln -sf ../../../../libnov/data/src/nov
+    - cd ../../..
+    - export PYTHONPATH="$PWD/nov/python-cross-win64/Python-3.9.1"
     - ls -al "$HOME/.pyenv/bin"
     - ls -al "$HOME/.pyenv/shims"
     - rustup target add x86_64-pc-windows-gnu # Add the mingw-w64 Rust target to cargo with the rustup command.
@@ -174,6 +177,7 @@ debug-windows-x86_64:
     - cp -r libnov/data hobnob
     - cp -r libnov/shader hobnob
     - cp -r nov/python-cross-win64 hobnob/python
+    - mv hobnob/data/src/nov hobnob/python/Python-3.9.1/nov
     - cp nov/target-dx12/x86_64-pc-windows-gnu/debug/nov.exe hobnob/nov-dx12.exe
     - cp nov/target-dx11/x86_64-pc-windows-gnu/debug/nov.exe hobnob/nov-dx11.exe
     - cp nov/target/x86_64-pc-windows-gnu/debug/python39.dll hobnob
@@ -278,9 +282,12 @@ release-windows-x86_64:
     - echo ""
     - export PYO3_CROSS_INCLUDE_DIR="$(pyenv prefix)/include/python3.9"
     - export PYO3_CROSS_LIB_DIR="$PWD/nov/python-cross-win64"
-    - export PYTHONHOME="$PWD/nov/python-cross-win64/Python-3.9.1"
-    - export PYTHONPATH="$PWD/nov/python-cross-win64/Python-3.9.1:$PWD/libnov/data/src:$PYTHONPATH"
     - export PYTHON_SYS_EXECUTABLE="$PWD/nov/python-cross-win64/python.exe"
+    - export PYTHONHOME="$PWD/nov/python-cross-win64/Python-3.9.1"
+    - cd nov/python-cross-win64/Python-3.9.1
+    - ln -sf ../../../../libnov/data/src/nov
+    - cd ../../..
+    - export PYTHONPATH="$PWD/nov/python-cross-win64/Python-3.9.1"
     - ls -al "$HOME/.pyenv/bin"
     - ls -al "$HOME/.pyenv/shims"
     - rustup target add x86_64-pc-windows-gnu # Add the mingw-w64 Rust target to cargo with the rustup command.
@@ -300,6 +307,7 @@ release-windows-x86_64:
     - cp -r libnov/data hobnob
     - cp -r libnov/shader hobnob
     - cp -r nov/python-cross-win64 hobnob/python
+    - mv hobnob/data/src/nov hobnob/python/Python-3.9.1/nov
     - cp nob/target/x86_64-pc-windows-gnu/release/nob.exe hobnob
     - cp nov/target/x86_64-pc-windows-gnu/release/nov.exe hobnob
     - cp nov/target-dx12/x86_64-pc-windows-gnu/release/nov.exe hobnob/nov-dx12.exe
