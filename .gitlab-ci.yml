@@ -156,10 +156,11 @@ debug-windows-x86_64:
     - export PYO3_CROSS_LIB_DIR="$PWD/nov/python-cross-win64"
     - export PYTHON_SYS_EXECUTABLE="$PWD/nov/python-cross-win64/python.exe"
     - export PYTHONHOME="$PWD/nov/python-cross-win64/Python-3.9.1"
-    - cd nov/python-cross-win64/Python-3.9.1
-    - ln -sf ../../../../libnov/data/src/nov
-    - cd ../../..
-    - export PYTHONPATH="$PWD/nov/python-cross-win64/Python-3.9.1"
+    - cd $PWD/nov/python-cross-win64
+    - cp -r ../../libnov/data/src/* .
+    # - ln -sf ../../../libnov/data/src/nov
+    - cd ../..
+    - export PYTHONPATH="$PWD/nov/python-cross-win64"
     - ls -al "$HOME/.pyenv/bin"
     - ls -al "$HOME/.pyenv/shims"
     - rustup target add x86_64-pc-windows-gnu # Add the mingw-w64 Rust target to cargo with the rustup command.
@@ -182,10 +183,10 @@ debug-windows-x86_64:
     - cp nov/target-dx11/x86_64-pc-windows-gnu/debug/nov.exe hobnob/nov-dx11.exe
     - cp nov/target/x86_64-pc-windows-gnu/debug/python39.dll hobnob
     - cp nov/target/x86_64-pc-windows-gnu/debug/python3.9.dll hobnob
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nob.exe\nendlocal\n" | tee hobnob/nob.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov.exe\nendlocal\n" | tee hobnob/hobnob.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx12.exe\nendlocal\n" | tee hobnob/hobnob-dx12.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx11.exe\nendlocal\n" | tee hobnob/hobnob-dx11.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nob.exe\nendlocal\n" | tee hobnob/nob.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov.exe\nendlocal\n" | tee hobnob/hobnob.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx12.exe\nendlocal\n" | tee hobnob/hobnob-dx12.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx11.exe\nendlocal\n" | tee hobnob/hobnob-dx11.bat
   artifacts:
     name: hobnob-debug-windows-x86_64
     # expire_in: never  # Keep this stage's output artifacts forever.
@@ -284,10 +285,11 @@ release-windows-x86_64:
     - export PYO3_CROSS_LIB_DIR="$PWD/nov/python-cross-win64"
     - export PYTHON_SYS_EXECUTABLE="$PWD/nov/python-cross-win64/python.exe"
     - export PYTHONHOME="$PWD/nov/python-cross-win64/Python-3.9.1"
-    - cd nov/python-cross-win64/Python-3.9.1
-    - ln -sf ../../../../libnov/data/src/nov
-    - cd ../../..
-    - export PYTHONPATH="$PWD/nov/python-cross-win64/Python-3.9.1"
+    - cd $PWD/nov/python-cross-win64
+    - cp -r ../../libnov/data/src/* .
+    # - ln -sf ../../../libnov/data/src/nov
+    - cd ../..
+    - export PYTHONPATH="$PWD/nov/python-cross-win64"
     - ls -al "$HOME/.pyenv/bin"
     - ls -al "$HOME/.pyenv/shims"
     - rustup target add x86_64-pc-windows-gnu # Add the mingw-w64 Rust target to cargo with the rustup command.
@@ -314,10 +316,10 @@ release-windows-x86_64:
     - cp nov/target-dx11/x86_64-pc-windows-gnu/release/nov.exe hobnob/nov-dx11.exe
     - cp nov/target/x86_64-pc-windows-gnu/release/python39.dll hobnob
     - cp nov/target/x86_64-pc-windows-gnu/release/python3.9.dll hobnob
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nob.exe\nendlocal\n" | tee hobnob/nob.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov.exe\nendlocal\n" | tee hobnob/hobnob.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx12.exe\nendlocal\n" | tee hobnob/hobnob-dx12.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx11.exe\nendlocal\n" | tee hobnob/hobnob-dx11.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nob.exe\nendlocal\n" | tee hobnob/nob.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov.exe\nendlocal\n" | tee hobnob/hobnob.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx12.exe\nendlocal\n" | tee hobnob/hobnob-dx12.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx11.exe\nendlocal\n" | tee hobnob/hobnob-dx11.bat
   artifacts:
     name: hobnob-release-windows-x86_64
     # expire_in: never  # Keep this stage's output artifacts forever.
