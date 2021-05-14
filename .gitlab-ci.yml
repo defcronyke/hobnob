@@ -109,9 +109,9 @@ debug-linux-x86_64:
     - chmod 755 hobnob/nob
     - chmod 755 hobnob/nov
     - chmod 755 hobnob/nov-gl
-    - printf "#!/bin/bash\n\n./nob\n" | tee hobnob/nob.sh
-    - printf "#!/bin/bash\n\n./nov\n" | tee hobnob/hobnob.sh
-    - printf "#!/bin/bash\n\n./nov-gl\n" | tee hobnob/hobnob-gl.sh
+    - printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nob\n" | tee hobnob/nob.sh
+    - printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nov\n" | tee hobnob/hobnob.sh
+    - printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nov-gl\n" | tee hobnob/hobnob-gl.sh
     - chmod 755 hobnob/nob.sh
     - chmod 755 hobnob/hobnob.sh
     - chmod 755 hobnob/hobnob-gl.sh
@@ -178,10 +178,10 @@ debug-windows-x86_64:
     - cp nov/target-dx11/x86_64-pc-windows-gnu/debug/nov.exe hobnob/nov-dx11.exe
     - cp nov/target/x86_64-pc-windows-gnu/debug/python39.dll hobnob
     - cp nov/target/x86_64-pc-windows-gnu/debug/python3.9.dll hobnob
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nob.exe\nendlocal\n" | tee hobnob/nob.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov.exe\nendlocal\n" | tee hobnob/hobnob.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx12.exe\nendlocal\n" | tee hobnob/hobnob-dx12.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx11.exe\nendlocal\n" | tee hobnob/hobnob-dx11.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nob.exe\nendlocal\n" | tee hobnob/nob.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov.exe\nendlocal\n" | tee hobnob/hobnob.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx12.exe\nendlocal\n" | tee hobnob/hobnob-dx12.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx11.exe\nendlocal\n" | tee hobnob/hobnob-dx11.bat
   artifacts:
     name: hobnob-debug-windows-x86_64
     # expire_in: never  # Keep this stage's output artifacts forever.
@@ -233,9 +233,9 @@ release-linux-x86_64:
     - chmod 755 hobnob/nob
     - chmod 755 hobnob/nov
     - chmod 755 hobnob/nov-gl
-    - printf "#!/bin/bash\n\n./nob\n" | tee hobnob/nob.sh
-    - printf "#!/bin/bash\n\n./nov\n" | tee hobnob/hobnob.sh
-    - printf "#!/bin/bash\n\n./nov-gl\n" | tee hobnob/hobnob-gl.sh
+    - printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nob\n" | tee hobnob/nob.sh
+    - printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nov\n" | tee hobnob/hobnob.sh
+    - printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nov-gl\n" | tee hobnob/hobnob-gl.sh
     - chmod 755 hobnob/nob.sh
     - chmod 755 hobnob/hobnob.sh
     - chmod 755 hobnob/hobnob-gl.sh
@@ -306,10 +306,10 @@ release-windows-x86_64:
     - cp nov/target-dx11/x86_64-pc-windows-gnu/release/nov.exe hobnob/nov-dx11.exe
     - cp nov/target/x86_64-pc-windows-gnu/release/python39.dll hobnob
     - cp nov/target/x86_64-pc-windows-gnu/release/python3.9.dll hobnob
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nob.exe\nendlocal\n" | tee hobnob/nob.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov.exe\nendlocal\n" | tee hobnob/hobnob.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx12.exe\nendlocal\n" | tee hobnob/hobnob-dx12.bat
-    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx11.exe\nendlocal\n" | tee hobnob/hobnob-dx11.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nob.exe\nendlocal\n" | tee hobnob/nob.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov.exe\nendlocal\n" | tee hobnob/hobnob.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx12.exe\nendlocal\n" | tee hobnob/hobnob-dx12.bat
+    - printf "@echo off\nsetlocal\nset PYTHONPATH=%%cd%%\\python:%%cd%%\\data\\src&& set PYTHONHOME=%%cd%%\\python\\Python-3.9.1&& nov-dx11.exe\nendlocal\n" | tee hobnob/hobnob-dx11.bat
   artifacts:
     name: hobnob-release-windows-x86_64
     # expire_in: never  # Keep this stage's output artifacts forever.
