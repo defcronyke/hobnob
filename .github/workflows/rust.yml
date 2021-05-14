@@ -135,9 +135,9 @@ jobs:
           chmod 755 hobnob/hobnob/nob
           chmod 755 hobnob/hobnob/nov
           chmod 755 hobnob/hobnob/nov-gl
-          printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nob\n" | tee hobnob/hobnob/nob.sh
-          printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nov\n" | tee hobnob/hobnob/hobnob.sh
-          printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nov-gl\n" | tee hobnob/hobnob/hobnob-gl.sh
+          printf "#!/bin/bash\n\nPYTHONPATH=\"\$PWD/data/src:\$PYTHONPATH\" ./nob\n" | tee hobnob/hobnob/nob.sh
+          printf "#!/bin/bash\n\nPYTHONPATH=\"\$PWD/data/src:\$PYTHONPATH\" ./nov\n" | tee hobnob/hobnob/hobnob.sh
+          printf "#!/bin/bash\n\nPYTHONPATH=\"\$PWD/data/src:\$PYTHONPATH\" ./nov-gl\n" | tee hobnob/hobnob/hobnob-gl.sh
           chmod 755 hobnob/hobnob/nob.sh
           chmod 755 hobnob/hobnob/hobnob.sh
           chmod 755 hobnob/hobnob/hobnob-gl.sh
@@ -275,9 +275,9 @@ jobs:
           chmod 755 hobnob/hobnob/nob
           chmod 755 hobnob/hobnob/nov
           chmod 755 hobnob/hobnob/nov-gl
-          printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nob\n" | tee hobnob/hobnob/nob.sh
-          printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nov\n" | tee hobnob/hobnob/hobnob.sh
-          printf "#!/bin/bash\n\nPYTHONPATH=\"$PWD/data/src:$PYTHONPATH\" ./nov-gl\n" | tee hobnob/hobnob/hobnob-gl.sh
+          printf "#!/bin/bash\n\nPYTHONPATH=\"\$PWD/data/src:\$PYTHONPATH\" ./nob\n" | tee hobnob/hobnob/nob.sh
+          printf "#!/bin/bash\n\nPYTHONPATH=\"\$PWD/data/src:\$PYTHONPATH\" ./nov\n" | tee hobnob/hobnob/hobnob.sh
+          printf "#!/bin/bash\n\nPYTHONPATH=\"\$PWD/data/src:\$PYTHONPATH\" ./nov-gl\n" | tee hobnob/hobnob/hobnob-gl.sh
           chmod 755 hobnob/hobnob/nob.sh
           chmod 755 hobnob/hobnob/hobnob.sh
           chmod 755 hobnob/hobnob/hobnob-gl.sh
