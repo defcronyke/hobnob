@@ -37,3 +37,6 @@
 [submodule "nov"]
 	path = nov
 	url = https://github.com/defcronyke/nov.git
+[submodule "pynov"]
+	path = pynov
+	url = https://github.com/defcronyke/pynov.git

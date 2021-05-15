@@ -52,6 +52,12 @@ hobnob_commit_push() {
   git push
   cd ..
 
+  cd pynov
+  git add .
+  git commit -m "$msg" && \
+  git push
+  cd ..  
+
   git add .
   git commit -m "$msg" && \
   git push
